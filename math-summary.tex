@@ -46,6 +46,7 @@ The following is taken from Spivak's {\it Calculus} \cite{spivak}.
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
 
 \begin{definition}[$(\epsilon, \delta)$ definition of limit]
 
@@ -56,7 +57,7 @@ Let $f: \mathbb{R} \to \mathbb{R}$ be a function.
 \end{equation}
 
 if for every $\epsilon > 0$ there exists $\delta > 0$ such that if $0 < |x-a| <
-\delta$, then $|f(x) - L| < \epsilon$. $\blacksquare$
+\delta$, then $|f(x) - L| < \epsilon$.
  
 \end{definition}
 
@@ -70,14 +71,53 @@ by making $x$ sufficiently close to $a$.
 $f$ is continuous at $a$ if
 
 \begin{equation}
-lim_{x \to a} f(x) = f(a)
-\end{equation}.
+\lim_{x \to a} f(x) = f(a).
+\end{equation}
 
 \end{definition}
 
 \subsection{Derivatives}
 
+\begin{definition} 
+$f$ is differentiable at $a$ if
+
+\begin{equation}
+\lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+\end{equation}
+
+exists.
+
+\end{definition}
+
+\begin{theorem}[Product Rule] 
+
+If $f$ and $g$ are differentiable, 
+
+\begin{equation}
+(f \cdot g)' = f'g + g'f.
+\end{equation}
+
+
+\end{theorem} 
+
+This generalizes recursively; $(f \cdot g \cdot h)' = f'gh + fg'h + fgh'$, and
+so on. Notice the symbolic symmetry of it: sum the product of all the functions,
+differentiating each one in turn.
+
+\begin{theorem}[Chain Rule]
+
+If $f$ and $g$ are differentiable,
+
+\begin{equation}
+(f \circ g)'(x) = f'(g)g'(x).
+\end{equation}
+
+
+\end{theorem}
+
 \subsection{Integration}
+
+\subsection{Taylor Series}
 
 \section{Linear Algebra}
 
