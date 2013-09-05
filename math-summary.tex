@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Math review for machine learning}
+\author{Warren Henning\\\texttt{warren.henning@gmail.com}}
+\date{\today}
+
+\maketitle
+
+\section{Disclaimer}
+
+I haven't taken a university math course in several years. There may very well be typos and outright mathematical errors!
+
+\section{Calculus}
+
+\subsection{Limits}
+
+\newtheorem{definition}{Definition}
+
+\begin{definition}[$(\epsilon, \delta)$ definition of limit]
+
+Let {\it f} be a function. 
+
+\begin{equation}
+\lim_{x \to a} f(x) = L
+\end{equation}
+
+if for every $\epsilon > 0$ there exists $\delta > 0$ such that if $0 < |x-a| < \delta$, then $|f(x) - L| < \epsilon$.
+ 
+\end{definition}
+
+This formalizes the idea of being able to take $f(x)$ as close to $L$ as we want by making $x$ sufficiently close to $a$.
+
+\subsection{Continuity}
+
+\subsection{Derivatives}
+
+\subsection{Integration}
+
+\section{Linear Algebra}
+
+\section{License}
+
+This document is freely shareable under the terms of the GNU Free Documentation license; see LICENSE in this document's directory for more information.
+
+\end{document}
+
