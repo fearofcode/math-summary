@@ -2,6 +2,19 @@
 
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{amsthm}
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
 
 \begin{document}
 
@@ -13,27 +26,42 @@
 
 \section{Disclaimer}
 
-I haven't taken a university math course in several years. There may very well be typos and outright mathematical errors!
+I haven't taken a university math course in several years. There may very well
+be typos and outright mathematical errors!
+
+Strictly speaking, I have no business writing this.
+
+\section{Introduction}
+
+This document is intended to summarize the essential math needed to understand
+machine learning at a deep level. It is intended to summarize key formulas and
+definitions, not replace actual texts.
 
 \section{Calculus}
 
+The following is taken from Spivak's {\it Calculus} \cite{spivak}.
+
 \subsection{Limits}
 
+\theoremstyle{definition}
 \newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
 
 \begin{definition}[$(\epsilon, \delta)$ definition of limit]
 
-Let {\it f} be a function. 
+Let $f: \mathbb{R} \to \mathbb{R}$ be a function. 
 
 \begin{equation}
 \lim_{x \to a} f(x) = L
 \end{equation}
 
-if for every $\epsilon > 0$ there exists $\delta > 0$ such that if $0 < |x-a| < \delta$, then $|f(x) - L| < \epsilon$.
+if for every $\epsilon > 0$ there exists $\delta > 0$ such that if $0 < |x-a| <
+\delta$, then $|f(x) - L| < \epsilon$. $\blacksquare$
  
 \end{definition}
 
-This formalizes the idea of being able to take $f(x)$ as close to $L$ as we want by making $x$ sufficiently close to $a$.
+This formalizes the idea of being able to take $f(x)$ as close to $L$ as we want
+by making $x$ sufficiently close to $a$.
 
 \subsection{Continuity}
 
@@ -43,9 +71,29 @@ This formalizes the idea of being able to take $f(x)$ as close to $L$ as we want
 
 \section{Linear Algebra}
 
+\section{Analysis}
+
+\section{Probability}
+
+\section{Statistics}
+
 \section{License}
 
-This document is freely shareable under the terms of the GNU Free Documentation license; see LICENSE in this document's directory for more information.
+This document is freely shareable under the terms of the GNU Free Documentation
+license; see LICENSE in this document's directory for more information.
+
+\section{Books}
+
+\begin{thebibliography}{9}
+
+\bibitem{spivak}
+  Michael Spivak,
+  \emph{Calculus}.
+  Publish or Perish,
+  4th Edition,
+  2008.
+
+\end{thebibliography}
 
 \end{document}
 
