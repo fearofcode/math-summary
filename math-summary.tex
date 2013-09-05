@@ -129,6 +129,11 @@ Assuming everything above is defined.
 
 \end{theorem}
 
+If you can show that the positive ($\lim_{x \to a^{+}} f(x)$) and negative
+($\lim_{x \to a^{-}} f(x) $) limits of a function are
+different, it follows that the limit does not exist.
+
+
 \subsection{Continuity}
 
 \begin{definition}
@@ -140,6 +145,28 @@ $f$ is continuous at $a$ if
 \end{equation}
 
 \end{definition}
+
+Of course continuous functions compose as you'd expect.
+
+\begin{theorem}
+
+If $f$ and $g$ are continuous at $a$, then $f+g$ and $f \cdot g$ is continuous
+at $a$. If $g(a) \neq 0$, $1/g$ is continuous at $a$.
+
+\end{theorem}
+
+\begin{proof}
+
+This follows from the definition of continuity and the previous limit
+theorem. $\lim_{x \to a} (f(x) + g(x)) = \lim_{x \to a} f(x) + \lim_{x \to a}
+g(x) = f(a) + g(a)$, so $f + g$ is continuous at $a$ by definition of
+continuity. Replacing $+$ with $\cdot$ and using the previous limit theorem, the
+rest of the result follows. $\blacksquare$
+
+\end{proof}
+
+The key thing that happens with a continuous function is that there's an
+interval around $a$ that will share the properties of $f(a)$, like sign.
 
 \subsection{Derivatives}
 
