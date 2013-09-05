@@ -84,33 +84,50 @@ This formalizes the idea of being able to take $f(x)$ as close to $L$ as we want
 by making $x$ sufficiently close to $a$.
 
 Actually proving these winds up being an exercise in grappling with bullshit
-absolute value expressions. Let $\epsilon > 0$ and find a suitable expression
-for $\delta$ in terms of $\epsilon$ so that $|f(x) -L| < \epsilon$ holds.
+absolute value expressions. Your basic plan of attack will probably be to let
+$\epsilon > 0$ and find a suitable expression for $\delta$ in terms of
+$\epsilon$ so that $|f(x) -L| < \epsilon$ once $|x-a|< \delta$ is assumed.
 
 \begin{example} 
 
 \emph{Show that $\lim_{x \to 1} (3x-1) = 2$}.
 
-Substituting $f(x) = 3x-1$, $a = 1$, and $L = 2$ into the definition of a limit, we
-want to show that 
+Substituting $f(x) = 3x-1$, $a = 1$, and $L = 2$ into the definition of a limit,
+we want to show that
 
 \begin{equation}
 |x - 1| < \delta \implies |3x - 3| < \epsilon.
 \end{equation}
 
-This example chosen because the algebra is easy works out like so: $|3x-3| =
-|3(x-1)| = 3|x-1| < \epsilon \implies |x-1| < \epsilon/3$, so $\delta =
-\epsilon/3$ is a suitable choice.
+This example was clearly chosen because the algebra is easy and the algebra
+works out like so: $|3x-3| = |3(x-1)| = 3|x-1| < \epsilon \implies |x-1| <
+\epsilon/3$, so $\delta = \epsilon/3$ is a suitable choice.
 
 Then $|x - 1| < \epsilon/3 \implies |3x-3| = |(x - 1) + (2x-2)| \leq |x-1| +
 |2x-2| = |x-1| + 2|x-1| < \epsilon/3 + 2 \cdot \epsilon/3 = \epsilon,$ so we are
 done. $\blacksquare$
 
-Notice that we have used the fact that $|x + y| \leq |x| + |y|$.
+Notice that we have used the fact that $|x + y| \leq |x| + |y|$, which is
+sometimes called the ``triangle inequality'': geometrically, it has the
+interpretation that the shortest path between any two points is a straight line.
 
 \end{example}
 
 As you can tell, with harder examples this shit gets really depressing.
+
+Limits compose the way you'd expect:
+\begin{theorem}
+Suppose $\lim_{x \to a} f(x) = L$ and $\lim_{x \to a} g(x) = M$. Then
+
+\begin{align}
+\lim_{x \to a} f(x) + g(x) & = L + M \\
+\lim_{x \to a} f(x)g(x) & = L \cdot M \\
+\lim_{x \to a} \left(\frac{f}{g}\right)(x) & = \frac{L}{M}
+\end{align}
+
+Assuming everything above is defined.
+
+\end{theorem}
 
 \subsection{Continuity}
 

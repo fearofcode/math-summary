@@ -13,7 +13,7 @@ First you need to [install a LaTeX distribution](http://latex-project.org/ftp.ht
 Errata
 ------
 
-I'm not all that good math so there are probably errors. Feel free to open issues/pull requests if you find them.
+I'm not all that good at math so there are probably errors. Feel free to open issues/pull requests if you find them.
 
 License
 -------
