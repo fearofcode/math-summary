@@ -5,6 +5,14 @@
 \usepackage{amssymb}
 
 \usepackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}{Axiom}
+\newtheorem{corollary}{Corollary}
+
 \makeatletter
 \def\th@plain{%
   \thm@notefont{}% same as heading font
@@ -18,11 +26,15 @@
 
 \begin{document}
 
-\title{Math review for machine learning}
+\title{Math summary for actually understanding machine learning}
 \author{Warren Henning\\\texttt{warren.henning@gmail.com}}
 \date{\today}
 
 \maketitle
+
+\tableofcontents
+
+\pagebreak
 
 \section{Disclaimer}
 
@@ -33,31 +45,82 @@ Strictly speaking, I have no business writing this.
 
 \section{Introduction}
 
-This document is intended to summarize the essential mathematical background
-needed to understand machine learning at a deep level. It is intended to
-summarize key definitions and theorems for reference.
+This document is intended to do two things: first, to summarize key theorems of difficult mathematical subjects as I'm studying them for my own purposes. Eventually, it would be nice to have this be a summary of the math needed for machine learning. But for now, things will be even more terse than an upper-division textbook.
+
+I want to actually understand what's going on in machine learning. That means having a solid background in core pure and applied mathematics as well as probability and statistics. Following cookbook recipes for machine learning libraries is wonderful up until it doesn't work or produces something that doesn't make sense. Then you're fucked because you don't know what's going on. Googling for what could be happening yields weird stuff that makes your eyes glaze over, and then you realize you're both in way over your head and \emph{proper fucked}.
+
+So the goal is to avoid that by having enough background to know what's going on numerically and statistically in a rigorous way. That will hopefully let us choose the right tool to begin with: do we actually need a neural network at all? Can we get away with a simple linear model? Why or why not? Can we even do any better than a simple naive Bayes classifier? The tutorials and ``data science" material won't answer these questions. They spend so much time ``visualizing" data and then writing Medium.com blog posts about a cool D3.js trick they found while doing so that they apparently don't stop to think whether what they're doing actually makes sense from a mathematical perspective.
+
+Also, I want to apply this stuff to actual interesting problems, not just better ways to push ads onto users' screens.
+
+Any attempts to water things down is a recipe for fallacious thinking, not that the tech industry has a problem embracing illogical things if it suits their selfish motives. Without further ado:
 
 \section{Basic Stuff}
 
 \subsection{Triangle Inequality}
 Let $|x|$ be the absolute value of $x$.
 
-\begin{equation}
-|a + b| \leq |a| + |b|, \forall a, b \in \mathbb{R}. 
+\begin{equation} \label{triangle-inequality}
+|a + b| \leq |a| + |b| 
 \end{equation}
+
+for all $a, b \in \mathbb{R}$. Geometrically, it has the interpretation that the shortest path between any two points is a straight line.
 
 \section{Calculus and Analysis}
 
 The following is taken from Spivak's {\it Calculus} \cite{spivak} as well as other basic calculus/analysis texts like \cite{ross}.
 
+\subsection{Bounds, sup, inf, the Completeness Axiom}
+
+Let $S \subset \mathbb{R}$, $S \neq \emptyset, m, M \in \mathbb{R}$. 
+
+\begin{definition}
+If $s \leq M$ $\forall s \in S$, $M$ is an \textbf{upper bound} of $S$. S is \textbf{bounded above}.
+\end{definition}
+
+\begin{definition}
+If $m \leq s$ $\forall s \in S$, $m$ is a \textbf{lower bound} of $S$. S is \textbf{bounded below}.
+\end{definition}
+
+\begin{definition}
+If $S$ is both bounded above and bounded below, $S$ is \textbf{bounded}. So $\exists m, M$ s.t. $S \subset [m, M]$.
+\end{definition}
+
+\begin{definition}
+If $M$ is an upper bound and $M \leq B$ for all other upper bounds $B$, $M$ is a \textbf{least upper bound} or \textbf{supremum} of $S$. Write sup $S = M$.
+\end{definition}
+
+\begin{definition}
+If $m$ is a lower bound and $m \geq b$ for all other lower bounds $b$, $m$ is a \textbf{greatest lower bound} or \textbf{infimum} of $S$. Write inf $S = m$.
+\end{definition}
+
+\begin{example}
+sup $\{r \in \mathbb{R} : 0 \leq r < \sqrt{2}\} = \sqrt{2}$.
+\end{example}
+
+The least upper bound and greatest lower bound are unique. Imagine having a bunch of points on a number line and moving a pencil from left to right until it hit upon a point on the line. That would be an infimum. Going from the opposite direct, right to left, would give a supremum. Note that the infimum and supremum do not need to be in $S$.
+
+\begin{axiom}[Completeness Axiom]
+Every nonempty subset $S$ of $\mathbb{R}$ that is bounded above has a least upper bound $\sup S \in\mathbb{R}$.
+\end{axiom}
+
+\begin{corollary}
+Every nonempty subset $S$ of $\mathbb{R}$ that is bounded below has a greatest lower bound $\inf S \in\mathbb{R}$.
+\end{corollary}
+
+\begin{proof}
+Since $S$ is bounded below, $\exists m \in \mathbb{R}$ s.t. $m \leq s$, $s \in S$.
+
+Let $-S = \{ -s : s \in S \}$. Then $-m \ge -s$, so $-S$ is bounded above. So $\sup -S$ exists.
+
+TODO show $\inf S = - \sup -S$.
+
+\end{proof}
+
 \subsection{Limits}
 
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
-\newtheorem{theorem}{Theorem}
 
-\begin{definition}[$(\epsilon, \delta)$ definition of limit]
+\begin{definition}[$(\epsilon, \delta)$ limit of a function]
 
 Let $f: \mathbb{R} \to \mathbb{R}$ be a function. 
 
@@ -97,13 +160,11 @@ Then $|x - 1| < \epsilon/3 \implies |3x-3| = |(x - 1) + (2x-2)| \leq |x-1| +
 |2x-2| = |x-1| + 2|x-1| < \epsilon/3 + 2 \cdot \epsilon/3 = \epsilon,$ so we are
 done. $\blacksquare$
 
-Notice that we have used the fact that $|x + y| \leq |x| + |y|$, which is
-sometimes called the ``triangle inequality'': geometrically, it has the
-interpretation that the shortest path between any two points is a straight line.
-
+Note that we have used Eq. \ref{triangle-inequality} above.
+ 
 \end{example}
 
-As you can tell, with harder examples this shit gets really depressing.
+As you can no doubt surmise, with harder examples this shit gets really depressing.
 
 Limits compose the way you'd expect:
 \begin{theorem}
@@ -128,7 +189,7 @@ different, it follows that the limit does not exist.
 
 \begin{definition}
 
-$f$ is continuous at $a$ if
+$f$ is \textbf{continuous} at $a$ if
 
 \begin{equation}
 \lim_{x \to a} f(x) = f(a).
@@ -211,8 +272,7 @@ If $f$ and $g$ are differentiable,
 (x^n)' = nx^{n-1}
 \end{equation}
 
-
-\section{Books}
+\section{Books I copied this stuff from}
 
 \begin{thebibliography}{9}
 
