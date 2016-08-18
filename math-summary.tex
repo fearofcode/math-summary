@@ -68,11 +68,19 @@ for all $a, b \in \mathbb{R}$. Geometrically, it has the interpretation that the
 
 \section{Calculus and Analysis}
 
-The following is taken from Spivak's {\it Calculus} \cite{spivak} as well as other basic calculus/analysis texts like \cite{ross}.
+The following is taken from Spivak's {\it Calculus} \cite{spivak} and Ross' {\it Elementary Analysis} \cite{ross}. Examples often correspond to exercise in the texts and the order follows that of the books.
 
 \subsection{Bounds, sup, inf, the Completeness Axiom}
 
 Let $S \subset \mathbb{R}$, $S \neq \emptyset, m, M \in \mathbb{R}$. 
+
+\begin{definition}
+If $s_0 \in S$ and $s_0 \ge s$ $\forall s \in S$, write $\max S = s_0$. $s_0$ is the \textbf{maximum} of $S$.
+\end{definition}
+
+\begin{definition}
+If $s_0 \in S$ and $s_0 \le s$ $\forall s \in S$, write $\min S = s_0$. $s_0$ is the \textbf{minimum} of $S$.
+\end{definition}
 
 \begin{definition}
 If $s \leq M$ $\forall s \in S$, $M$ is an \textbf{upper bound} of $S$. S is \textbf{bounded above}.
@@ -116,6 +124,19 @@ Let $-S = \{ -s : s \in S \}$. Then $-m \ge -s$, so $-S$ is bounded above. So $\
 TODO show $\inf S = - \sup -S$.
 
 \end{proof}
+
+\begin{example}
+Say $\sup S \in S$. Then $\sup S \ge s$ $\forall s \in S$, so by definition $\sup S = \max S$.
+\end{example}
+
+\begin{example} \label{bound-comparison}
+Let $S$ be bounded and nonempty. Then $\inf S$ and $\sup S$ exist. Let $s \in S$. Then $\inf S \le s \le \sup S$.
+So $\inf S \le \sup S$.
+\end{example}
+
+\begin{example}
+In Example \ref{bound-comparison}, suppose $\inf S = \sup S$. Then $\inf S = s = \sup S$, so $S = \{s\}$.
+\end{example}
 
 \subsection{Limits}
 
