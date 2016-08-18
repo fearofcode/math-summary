@@ -26,7 +26,7 @@
 
 \section{Disclaimer}
 
-I haven't taken a university math course in several years. There may very well
+I haven't taken a university math course in many years. There may very well
 be typos and outright mathematical errors!
 
 Strictly speaking, I have no business writing this.
@@ -35,30 +35,20 @@ Strictly speaking, I have no business writing this.
 
 This document is intended to summarize the essential mathematical background
 needed to understand machine learning at a deep level. It is intended to
-summarize key ideas, not replace actual texts.
+summarize key definitions and theorems for reference.
 
-Our goal is to establish a rigorous foundation for understanding machine
-learning and statistics at about a first-year graduate level by understanding
-measure-theoretic probability and linear algebra.
+\section{Basic Stuff}
 
-More important than any particular formula or mathematical fact is
-\emph{mathematical thinking}. There are more than enough data mining and machine learning
-tools and libraries out there already; the shortage is of capable people who
-can apply these tools in sound ways to add value to the organization on whose
-behalf they act. You'll have to be focused on getting things done and managing
-your time efficiently, as well.
+\subsection{Triangle Inequality}
+Let $|x|$ be the absolute value of $x$.
 
-If you never took an upper-division math course or a class on proof techniques,
-I suspect things will get hard when you start getting into analysis. In addition
-to mastering the mathematical material, you'll want to focus on rigorous
-mathematical logic.
+\begin{equation}
+|a + b| \leq |a| + |b|, \forall a, b \in \mathbb{R}. 
+\end{equation}
 
-However, don't let this discourage you. I am a buffoon who has no business
-attempting anything involving machine learning, and well, here I am, attempting it.
+\section{Calculus and Analysis}
 
-\section{Calculus}
-
-The following is taken from Spivak's {\it Calculus} \cite{spivak}.
+The following is taken from Spivak's {\it Calculus} \cite{spivak} as well as other basic calculus/analysis texts like \cite{ross}.
 
 \subsection{Limits}
 
@@ -221,32 +211,17 @@ If $f$ and $g$ are differentiable,
 (x^n)' = nx^{n-1}
 \end{equation}
 
-\subsection{Integration}
-
-\subsection{Taylor Series}
-
-\section{Linear Algebra}
-
-\section{Analysis}
-
-\section{Probability}
-
-\section{Statistics}
-
-\section{Conclusion}
-
-The benefits of machine learning justify the considerable mathematical
-background involved because it allows you to do in, say, 100 lines of code what
-would not otherwise be possible in 1,000 or 10,000 of conventional procedural
-programming logic. It lets you create systems that learn, adapt, and adjust to
-changing conditions. They offer some of the greatest expressive power per line
-of code possible on a computer.
-
-Go forth and kick ass!
 
 \section{Books}
 
 \begin{thebibliography}{9}
+
+\bibitem{ross}
+  Kenneth A. Ross,
+  \emph{Elementary Analysis: The Theory of Calculus}.
+  Springer-Verlag,
+  1st Edition,
+  2013.
 
 \bibitem{spivak}
   Michael Spivak,
