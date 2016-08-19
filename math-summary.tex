@@ -68,6 +68,43 @@ Let $|x|$ be the absolute value of $x$.
 
 for all $a, b \in \mathbb{R}$. Geometrically, it has the interpretation that the shortest path between any two points is a straight line.
 
+\section{Sets}
+
+Let $A$, $B$, and $C$ be sets.
+
+\begin{theorem}[Distributive law of intersection over union]
+$\\ A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+\end{theorem}
+
+\begin{theorem}[Distributive law of union over intersection] \label{distributive-law-2}
+$\\ A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+\end{theorem}
+
+The standard, direct way to prove two sets $A$ and $B$ are equal is to take $x \in A$ and show that it's in $B$, establishing that $A \subset B$, and then conversely show that $x \in B$ implies $x \in A$, showing that $B \subset A$. Then $A = B$ by definition. Here's an example of this to prove Theorem \ref{distributive-law-2}:
+
+\begin{proof}
+Let $x \in A \cup (B \cap C)$. Then $x \in A$ or $x \in B \cap C$. If $x \in A$, $x \in A \cup B$ and $x \in A \cup C$, so $x \in (A \cup B) \cap (A \cup C)$. If $x \notin A$, $x \in B \cap C$, so $x \in A \cup B$ and $x \in A \cup C$, so $x \in (A \cup B) \cap (A \cup C)$. So $A \cup (B \cap C) \subset (A \cup B) \cap (A \cup C)$.
+
+Now suppose $x \in (A \cup B) \cap (A \cup C)$. This implies $x \in A$, so $x \in A \cup (B \cap C)$. So $(A \cup B) \cap (A \cup C) \subset A \cup (B \cap C)$.
+
+These two facts together suffice to show that the two sets are equal, so we are done.
+\end{proof} 
+
+\begin{definition}
+Let $A$ and $U$ (called the \textbf{universe}) be sets. Suppose $A \subset U$. Then $A' = U \setminus A$ is the \textbf{complement} of $A$.
+\end{definition}
+
+\begin{theorem}[De Morgan's Laws]
+Let $A$ and $B$ be subsets of some fixed set.
+
+\begin{align}
+(A \cup B)' = A' \cap B' \\
+(A \cap B)' = A' \cup B'
+\end{align}
+\end{theorem}
+
+These are easy to see with a Venn diagram or by comparing to the logical version of them you can find on Wikipedia. I would draw one here but doing that in \LaTeX \ is a pain in the ass. Sorry, just draw it on paper or Google it if you're curious.
+
 \section{Calculus and Analysis}
 
 The following is taken from Spivak's {\it Calculus} \cite{spivak} and Ross' {\it Elementary Analysis} \cite{ross}. Examples often correspond to exercise in the texts and the order follows that of the books.
@@ -93,7 +130,7 @@ If $m \leq s$ $\forall s \in S$, $m$ is a \textbf{lower bound} of $S$. S is \tex
 \end{definition}
 
 \begin{definition}
-If $S$ is both bounded above and bounded below, $S$ is \textbf{bounded}. So $\exists m, M$ s.t. $S \subset [m, M]$.
+If $S$ is both bounded above and bounded below, $S$ is \textbf{bounded}. So $\exists$ $m, M$ s.t. $S \subset [m, M]$.
 \end{definition}
 
 \begin{definition}
@@ -119,7 +156,7 @@ Every nonempty subset $S$ of $\mathbb{R}$ that is bounded below has a greatest l
 \end{corollary}
 
 \begin{proof}
-Since $S$ is bounded below, $\exists m \in \mathbb{R}$ s.t. $m \leq s$, $s \in S$.
+Since $S$ is bounded below, $\exists$ $m \in \mathbb{R}$ s.t. $m \leq s$, $s \in S$.
 
 Let $-S = \{ -s : s \in S \}$. Then $-m \ge -s$, so $-S$ is bounded above. So $\sup -S$ exists.
 
