@@ -46,7 +46,13 @@ Strictly speaking, I have no business writing this.
 
 \section{Introduction}
 
-\epigraph{Do not ask permission to understand. \\ Do not wait for the word of authority. \\ Seize reason in your own hand. \\ With your own teeth savor the fruit.}{Strichartz, \cite{strichartz}}
+\epigraph{Do not ask permission to understand. Do not wait for the word of authority. Seize reason in your own hand. With your own teeth savor the fruit.}{Strichartz, \cite{strichartz}}
+
+\epigraph{Dimidium facti qui coepit habet: sapere aude (``He who has begun is half done: dare to know").}{Horace}
+
+\epigraph{What we hope ever to do with ease, we must first learn to do with diligence.}{Samuel Johnson}
+
+\epigraph{Get your fundamentals on lock so that you can start getting into the ill advanced shit. This is universally applicable.}{Earl Sweatshirt}
 
 This document is intended to do two things: first, to summarize key theorems of difficult mathematical subjects as I'm studying them for my own purposes. Eventually, it would be nice to have this be a summary of the math needed for machine learning. But for now, things will be even more terse than an upper-division textbook.
 
@@ -60,6 +66,8 @@ Any attempts to water things down is a recipe for fallacious thinking, not that 
 
 Not everything here is actually necessary to understand machine learning. It's just stuff I learned on my way there. It's a general goal I have to cultivate mathematical maturity, and pretty much anything in math is fair game for developing that.
 
+There are many comments that contain claims which generally require rigorous proof and are not trivial by any means. The proofs of those claims are omitted here because this document is not intended to be a substitute for the many excellent textbooks that are available. See Section \ref{bibliography} for the books I used to create this.
+
 \section{Basic Stuff}
 
 \subsection{Triangle Inequality}
@@ -71,7 +79,7 @@ Let $|x|$ be the absolute value of $x$.
 
 for all $a, b \in \mathbb{R}$. Geometrically, it has the interpretation that the shortest path between any two points is a straight line.
 
-\section{Sets}
+\subsection{Sets}
 
 The following comes from Smith's \textit{Introductory Mathematics: Algebra and Analysis} \cite{smith}, which is a lovely book completely worth the exorbitant Springer purchase price for the jokes interspersed between mathematical content alone.
 
@@ -112,7 +120,7 @@ Let $A$ and $B$ be subsets of some fixed set.
 
 These are easy to see with a Venn diagram or by comparing to the logical version of them you can find on Wikipedia. I would draw one here but doing that in \LaTeX \ is a pain in the ass. Sorry, just draw it on paper or Google it if you're curious.
 
-\section{Maps}
+\subsection{Maps}
 
 Let $f: A \rightarrow B$ be a mapping from sets $A$ to $B$.
 
@@ -140,7 +148,7 @@ A composition of two surjective maps is surjective. \\
 A composition of two bijective maps is bijective.
 \end{proposition}
 
-\section{Relations, equivalence relations, partitions}
+\subsection{Relations, equivalence relations, partitions}
 
 Let $S$ be a set and $s, t, u \in S$ throughout this section.
 
@@ -409,7 +417,7 @@ If $f$ and $g$ are differentiable,
 (x^n)' = nx^{n-1}
 \end{equation}
 
-\section{Books I copied this stuff from}
+\section{Books I copied this stuff from} \label{bibliography}
 
 \begin{thebibliography}{9}
 
