@@ -7,15 +7,16 @@
 \usepackage{amsthm}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
-\newtheorem{theorem}{Theorem}
-\newtheorem{axiom}{Axiom}
-\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{corollary}{Corollary}[section]
 
 \makeatletter
 \def\th@plain{%
-  \thm@notefont{}% same as headingg font
+  \thm@notefont{}% same as heading font
   \itshape % body font
 }
 \def\th@definition{%
@@ -45,7 +46,13 @@ Strictly speaking, I have no business writing this.
 
 \section{Introduction}
 
-\epigraph{Do not ask permission to understand. \\ Do not wait for the word of authority. \\ Seize reason in your own hand. \\ With your own teeth savor the fruit.}{Strichartz, \cite{strichartz}}
+\epigraph{Do not ask permission to understand. Do not wait for the word of authority. Seize reason in your own hand. With your own teeth savor the fruit.}{Strichartz, \cite{strichartz}}
+
+\epigraph{Dimidium facti qui coepit habet: sapere aude (``He who has begun is half done: dare to know").}{Horace}
+
+\epigraph{What we hope ever to do with ease, we must first learn to do with diligence.}{Samuel Johnson}
+
+\epigraph{Get your fundamentals on lock so that you can start getting into the ill advanced shit. This is universally applicable.}{Earl Sweatshirt}
 
 This document is intended to do two things: first, to summarize key theorems of difficult mathematical subjects as I'm studying them for my own purposes. Eventually, it would be nice to have this be a summary of the math needed for machine learning. But for now, things will be even more terse than an upper-division textbook.
 
@@ -55,7 +62,11 @@ So the goal is to avoid that by having enough background to know what's going on
 
 Also, I want to apply this stuff to actual interesting problems, not just better ways to push ads onto users' screens.
 
-Any attempts to water things down is a recipe for fallacious thinking, not that the tech industry has a problem embracing illogical things if it suits their selfish motives. Without further ado:
+Any attempts to water things down is a recipe for fallacious thinking, not that the tech industry has a problem embracing illogical things if it suits their selfish motives.
+
+Not everything here is actually necessary to understand machine learning. It's just stuff I learned on my way there. It's a general goal I have to cultivate mathematical maturity, and pretty much anything in math is fair game for developing that.
+
+Interspersed between the main definitions and theorems are comments that themselves contain claims which generally require rigorous proof and are not trivial by any means. The proofs of those claims are omitted here because this document is not intended to be a substitute for the many excellent textbooks that are available. See Section \ref{bibliography} for the books I used to create this. Maybe it would be better to separate them out as propositions in of themselves the way I do with other facts below, but I've tried to focus on just the essentials. Again, this is not a textbook, and I'm assuming the material here is already known.
 
 \section{Basic Stuff}
 
@@ -67,6 +78,117 @@ Let $|x|$ be the absolute value of $x$.
 \end{equation}
 
 for all $a, b \in \mathbb{R}$. Geometrically, it has the interpretation that the shortest path between any two points is a straight line.
+
+\subsection{Sets}
+
+The following comes from Smith's \textit{Introductory Mathematics: Algebra and Analysis} \cite{smith}, which is a lovely book completely worth the exorbitant Springer purchase price for the jokes interspersed between mathematical content alone.
+
+Let $A$, $B$, and $C$ be sets.
+
+\begin{theorem}[Distributive law of intersection over union]
+$\\ A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+\end{theorem}
+
+\begin{theorem}[Distributive law of union over intersection] \label{distributive-law-2}
+$\\ A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+\end{theorem}
+
+These are analogous to distributive laws of fields such as $\mathbb{Q}$ and $\mathbb{R}$.
+
+The standard, direct way to prove two sets $A$ and $B$ are equal is to take $x \in A$ and show that it's in $B$, establishing that $A \subset B$\footnote{Note that $\subset$ is used here to mean ``subset" (i.e., subset or equal), not ``strict subset." We could alternatively use $\subseteq$, but that's a whole two extra characters in \LaTeX.}, and then conversely show that $x \in B$ implies $x \in A$, showing that $B \subset A$. Then $A = B$ by definition. Here's an example of this to prove Theorem \ref{distributive-law-2}:
+
+\begin{proof}
+Let $x \in A \cup (B \cap C)$. Then $x \in A$ or $x \in B \cap C$. If $x \in A$, $x \in A \cup B$ and $x \in A \cup C$, so $x \in (A \cup B) \cap (A \cup C)$. If $x \notin A$, $x \in B \cap C$, so $x \in A \cup B$ and $x \in A \cup C$, so $x \in (A \cup B) \cap (A \cup C)$. So $A \cup (B \cap C) \subset (A \cup B) \cap (A \cup C)$.
+
+Now suppose $x \in (A \cup B) \cap (A \cup C)$. This implies $x \in A$, so $x \in A \cup (B \cap C)$. So $(A \cup B) \cap (A \cup C) \subset A \cup (B \cap C)$.
+
+These two facts together suffice to show that the two sets are equal, so we are done.
+\end{proof} 
+
+\begin{definition}
+Let $A$ and $U$ (called the \textbf{universe}) be sets. Suppose $A \subset U$. Then $A' = U \setminus A$ is the \textbf{complement} of $A$.
+\end{definition}
+
+\begin{theorem}[De Morgan's Laws]
+Let $A$ and $B$ be subsets of some fixed set.
+
+\begin{align}
+(A \cup B)' = A' \cap B' \\
+(A \cap B)' = A' \cup B'
+\end{align}
+\end{theorem}
+
+These are easy to see with a Venn diagram or by comparing to the logical version of them you can find on Wikipedia. I would draw one here but doing that in \LaTeX \ is a pain in the ass. Sorry, just draw it on paper or Google it if you're curious.
+
+\subsection{Maps}
+
+Let $f: A \rightarrow B$ be a mapping from sets $A$ to $B$.
+
+\begin{definition}
+$f$ is \textbf{surjective} or \textbf{onto} if $\forall b \in B$, $\exists a \in A$ s.t. $f(a) = b$. $f$ is a \textbf{surjection}.
+\end{definition}
+
+\begin{definition}
+$f$ is \textbf{injective} or \textbf{1-1} if $a \neq a' \implies f(a) \neq f(a')$, $a, a' \in A$. $f$ is an \textbf{injection}.
+\end{definition}
+
+If $f$ is 1-1 and $f(a) = f(a')$, then $a = a'$.
+
+\begin{definition}
+If $f$ is both injective and surjective, $f$ is \textbf{bijective} or a \textbf{bijection}.
+\end{definition}
+
+Notice that being bijective is a necessary and sufficient condition for being invertible.
+
+Two sets have the same cardinality if there is a bijection between them.
+
+\begin{proposition}
+A composition $f \circ g : A \rightarrow C $ of two injective maps $f : A \rightarrow B$, $g: B \rightarrow C$ is injective. \\
+A composition of two surjective maps is surjective. \\
+A composition of two bijective maps is bijective.
+\end{proposition}
+
+\subsection{Relations, equivalence relations, partitions}
+
+Let $S$ be a set and $s, t, u \in S$ throughout this section.
+
+\begin{definition}
+A \textbf{relation} $\bowtie$ on $S$ is a subset of $S \times S$. Write $s \bowtie t$ if $(s, t) \in \ \bowtie$.
+\end{definition}
+
+\begin{definition}
+$\bowtie$ is \textbf{reflexive} if $s \bowtie s$ $\forall s \in S$. \\
+$\bowtie$ is \textbf{symmetric} if $s \bowtie t \implies t \bowtie s$. \\
+$\bowtie$ is \textbf{transitive} if $s \bowtie t$ and $t \bowtie u \implies s \bowtie u$. \\
+$\bowtie$ is an \textbf{equivalence relation} if is reflexive, symmetric, and transitive.
+\end{definition}
+
+Of course the most familiar example of an equivalence relation is $=$. But consider also the set of lines in the plane and the relation $||$, where $l_1 \ || \ l_2$ means $l_1$ is parallel to $l_2$. Then $||$ is an equivalence relation. Likewise with the congruence operator $\cong$ on triangles in the plane.
+
+\begin{definition}
+A \textbf{partition} of $S$ is a collection of non-empty, mutually disjoint subsets whose union is $S$.
+\end{definition}
+
+To show that a collection of sets $\{ C_1, \ldots, C_n \}$ is a partition of $S$ for $n \ge 1$:
+
+\begin{itemize}
+\item Show that $C_i \neq \emptyset$ $\forall i$
+\item Show that $C_i \cap C_j = \emptyset$ $\forall \ i \neq j$
+\item Show that $x \in S \implies x \in C_i$ for some $i$
+\end{itemize}
+
+An example would be partitioning the plane with lines (possibly an infinite number).
+
+Equivalence relations also partition the set into \textbf{equivalence classes}:
+
+\begin{definition}
+Let $\sim$ be an equivalence relation on $S$ and $x \in S$. \\
+$[x] = \{ y \ | \ y \in S, x \sim y\}$ is the \textbf{equivalence class} of $x$.
+\end{definition}
+
+\begin{proposition}
+$\{[x] \ | \ x \in S \}$ is a partition of $S$.
+\end{proposition}
 
 \section{Calculus and Analysis}
 
@@ -93,7 +215,7 @@ If $m \leq s$ $\forall s \in S$, $m$ is a \textbf{lower bound} of $S$. S is \tex
 \end{definition}
 
 \begin{definition}
-If $S$ is both bounded above and bounded below, $S$ is \textbf{bounded}. So $\exists m, M$ s.t. $S \subset [m, M]$.
+If $S$ is both bounded above and bounded below, $S$ is \textbf{bounded}. So $\exists$ $m, M$ s.t. $S \subset [m, M]$.
 \end{definition}
 
 \begin{definition}
@@ -110,7 +232,7 @@ sup $\{r \in \mathbb{R} : 0 \leq r < \sqrt{2}\} = \sqrt{2}$.
 
 The least upper bound and greatest lower bound are unique. Imagine having a bunch of points on a number line and moving a pencil from left to right until it hit upon a point on the line. That would be an infimum. Going from the opposite direct, right to left, would give a supremum. Note that the infimum and supremum do not need to be in $S$.
 
-\begin{axiom}[Completeness Axiom]
+\begin{axiom}[Completeness Axiom, a.k.a. Least Upper Bound Property]
 Every nonempty subset $S$ of $\mathbb{R}$ that is bounded above has a least upper bound $\sup S \in\mathbb{R}$.
 \end{axiom}
 
@@ -119,7 +241,7 @@ Every nonempty subset $S$ of $\mathbb{R}$ that is bounded below has a greatest l
 \end{corollary}
 
 \begin{proof}
-Since $S$ is bounded below, $\exists m \in \mathbb{R}$ s.t. $m \leq s$, $s \in S$.
+Since $S$ is bounded below, $\exists$ $m \in \mathbb{R}$ s.t. $m \leq s$, $s \in S$.
 
 Let $-S = \{ -s : s \in S \}$. Then $-m \ge -s$, so $-S$ is bounded above. So $\sup -S$ exists.
 
@@ -127,18 +249,18 @@ It can be shown that $\inf S = - \sup -S$, so $\inf S$ exists.
 
 \end{proof}
 
-\begin{example}
+\begin{proposition}
 Say $\sup S \in S$. Then $\sup S \ge s$ $\forall s \in S$, so by definition $\sup S = \max S$.
-\end{example}
+\end{proposition}
 
-\begin{example} \label{bound-comparison}
+\begin{proposition} \label{bound-comparison}
 Let $S$ be bounded and nonempty. Then $\inf S$ and $\sup S$ exist. Let $s \in S$. Then $\inf S \le s \le \sup S$.
 So $\inf S \le \sup S$.
-\end{example}
+\end{proposition}
 
-\begin{example}
-In Example \ref{bound-comparison}, suppose $\inf S = \sup S$. Then $\inf S = s = \sup S$, so $S = \{s\}$.
-\end{example}
+\begin{proposition}
+In Proposition \ref{bound-comparison}, suppose $\inf S = \sup S$. Then $\inf S = s = \sup S$, so $S = \{s\}$.
+\end{proposition}
 
 \subsection{Limits}
 
@@ -175,7 +297,7 @@ we want to show that
 |x - 1| < \delta \implies |3x - 3| < \epsilon.
 \end{equation}
 
-This example was clearly chosen because the algebra is easy and the algebra
+This example was clearly chosen because the algebra works out nicely. It
 works out like so: $|3x-3| = |3(x-1)| = 3|x-1| < \epsilon \implies |x-1| <
 \epsilon/3$, so $\delta = \epsilon/3$ is a suitable choice.
 
@@ -190,7 +312,7 @@ Note that we have used Eq. \ref{triangle-inequality} above.
 As you can no doubt surmise, with harder examples this shit gets really depressing.
 
 Limits compose the way you'd expect:
-\begin{theorem}
+\begin{proposition}
 Suppose $\lim_{x \to a} f(x) = L$ and $\lim_{x \to a} g(x) = M$. Then
 
 \begin{align}
@@ -201,7 +323,7 @@ Suppose $\lim_{x \to a} f(x) = L$ and $\lim_{x \to a} g(x) = M$. Then
 
 Assuming everything above is defined.
 
-\end{theorem}
+\end{proposition}
 
 If you can show that the positive ($\lim_{x \to a^{+}} f(x)$) and negative
 ($\lim_{x \to a^{-}} f(x) $) limits of a function are
@@ -222,12 +344,12 @@ $f$ is \textbf{continuous} at $a$ if
 
 Of course continuous functions compose as you'd expect.
 
-\begin{theorem}
+\begin{proposition}
 
-If $f$ and $g$ are continuous at $a$, then $f+g$ and $f \cdot g$ is continuous
+If $f$ and $g$ are continuous at $a$, then $f+g$ and $f \cdot g$ are continuous
 at $a$. If $g(a) \neq 0$, $1/g$ is continuous at $a$.
 
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 
@@ -261,7 +383,7 @@ velocity and $f''(x)$ as acceleration should be familiar.
 
 Every differentiable function is continuous, but not every continuous function is differentiable. The standard example of this is $f(x) = |x|$.
 
-\begin{theorem}[Product Rule] 
+\begin{proposition}[Product Rule] 
 
 If $f$ and $g$ are differentiable, 
 
@@ -270,13 +392,13 @@ If $f$ and $g$ are differentiable,
 \end{equation}
 
 
-\end{theorem} 
+\end{proposition} 
 
 This generalizes recursively; $(f \cdot g \cdot h)' = f'gh + fg'h + fgh'$, and
 so on. Notice the symbolic symmetry of it: sum the product of all the functions,
 differentiating each one in turn.
 
-\begin{theorem}[Chain Rule]
+\begin{proposition}[Chain Rule]
 
 If $f$ and $g$ are differentiable,
 
@@ -285,7 +407,7 @@ If $f$ and $g$ are differentiable,
 \end{equation}
 
 
-\end{theorem}
+\end{proposition}
 
 \subsubsection{Derivative formulas}
 
@@ -297,7 +419,7 @@ If $f$ and $g$ are differentiable,
 (x^n)' = nx^{n-1}
 \end{equation}
 
-\section{Books I copied this stuff from}
+\section{Books I copied this stuff from} \label{bibliography}
 
 \begin{thebibliography}{9}
 
@@ -307,6 +429,12 @@ If $f$ and $g$ are differentiable,
   Springer-Verlag,
   1st Edition,
   2013.
+
+\bibitem{smith}
+  Geoff Smith,
+  \emph{Introductory Mathematics: Algebra and Analysis},
+  Springer-Verlag,
+  1998.
 
 \bibitem{spivak}
   Michael Spivak,
