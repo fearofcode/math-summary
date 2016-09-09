@@ -127,25 +127,46 @@ These are easy to see with a Venn diagram or by comparing to the logical version
 Let $f: A \rightarrow B$ be a mapping from sets $A$ to $B$.
 
 \begin{definition}
+$A$ is the \textbf{domain} and $B$ the \textbf{codomain}. $f(X) = \{f(x) \ | \ x \in A\} \subset B$ is the \textbf{range} of $f$, also called the \textbf{image} of $f$.
+\end{definition}
+
+\begin{definition}
 $f$ is \textbf{surjective} or \textbf{onto} if $\forall b \in B$, $\exists a \in A$ s.t. $f(a) = b$. $f$ is a \textbf{surjection}.
 \end{definition}
+
+\begin{proposition}
+If the codomain of $f$ is equal to the range, $f$ is surjective.
+\end{proposition}
 
 \begin{definition}
 $f$ is \textbf{injective} or \textbf{1-1} if $a \neq a' \implies f(a) \neq f(a')$, $a, a' \in A$. $f$ is an \textbf{injection}.
 \end{definition}
 
-If $f$ is 1-1 and $f(a) = f(a')$, then $a = a'$.
+Taking the contrapositive of the previous definition, if $f$ is 1-1 and $f(a) = f(a')$, then $a = a'$. So you can show $f$ is injective by assuming $f(a) = f(b)$ for some $a$, $b$ $\in A$ and showing that $a = b$.
 
 \begin{definition}
 If $f$ is both injective and surjective, $f$ is \textbf{bijective} or a \textbf{bijection}.
 \end{definition}
 
-Notice that being bijective is a necessary and sufficient condition for being invertible.
+\begin{definition}
+$f$ is \textbf{invertible} if there exists $g: Y \rightarrow B$ such that 
 
-Two sets have the same cardinality if there is a bijection between them.
+\begin{center}
+$y = f(x) \iff x = g(y)$ for all $x \in X$, $y \in Y$.
+\end{center}
+
+\end{definition}
 
 \begin{proposition}
-A composition $f \circ g : A \rightarrow C $ of two injective maps $f : A \rightarrow B$, $g: B \rightarrow C$ is injective. \\
+Being bijective is a necessary and sufficient condition for being invertible. If it is invertible, its inverse is unique.
+\end{proposition}
+
+\begin{definition}
+Two sets have the same cardinality if there is a bijection between them.
+\end{definition}
+
+\begin{proposition}
+A composition $g \ \circ \ f : A \rightarrow C  = g(f(x)) $ of two injective maps $f : A \rightarrow B$, $g: B \rightarrow C$ is injective. \\
 A composition of two surjective maps is surjective. \\
 A composition of two bijective maps is bijective.
 \end{proposition}
