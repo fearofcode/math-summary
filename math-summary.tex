@@ -216,7 +216,14 @@ $\{[x] \ | \ x \in S \}$ is a partition of $S$.
 
 \section{Calculus and Analysis}
 
-The following is taken from Spivak's {\it Calculus} \cite{spivak} and Ross' {\it Elementary Analysis} \cite{ross}. Examples often correspond to exercise in the texts and the order follows that of the books.
+The following is taken from various calculus/analysis books, including Spivak's {\it Calculus} \cite{spivak} and Ross' {\it Elementary Analysis} \cite{ross}. Examples often correspond to exercise in the texts and the order follows that of the books. Although I drew this from multiple books, the amount of overlap between them is pretty high, although clearly analysis books will focus more on theory and less on calculation than a calculus book. So if for some reason you're considering what book to buy, there are pretty much only four categories of book to consider:
+
+\begin{itemize}
+\item Standard computational introductory calculus book, few or no proofs
+\item Rigorous calculus book, like \cite{spivak}
+\item Introductory analysis book, like \cite{ross}
+\item Rigorous undergraduate analysis book (which I haven't gotten to yet)
+\end{itemize}
 
 \subsection{Bounds, sup, inf, the Completeness Axiom}
 
@@ -257,7 +264,7 @@ If a set $S$ has a least upper bound, it is unique.
 \end{proposition}
 
 \begin{proof}
-Suppose there were two least upper bounds of a set, call them $r$ and $s$. It's easy to show that $r = s$, and therefore there's only one supremum. We can just apply the definition of what a least upper bound is here: as $s$ is an upper bound and $r$ is a least upper bound, $r \leq s$, by definition of $r$ being a least upper bound. Likewise as $r$ is an upper bound and $s$ is a least upper bound, $s \leq r$. (Again, this is just applying the fact that each is a least upper bound, so it's $\leq$ all upper bounds, including one another.) So as $r \leq s$ and $s \leq r$, $r = s$.
+Suppose there are two least upper bounds of $S$, call them $r$ and $s$. It's easy to show that $r = s$, and therefore there's only one supremum. We can just apply the definition of what a least upper bound is here: as $s$ is an upper bound and $r$ is a least upper bound, $r \leq s$, by definition of $r$ being a least upper bound. Likewise as $r$ is an upper bound and $s$ is a least upper bound, $s \leq r$. (Again, this is just applying the fact that each is a least upper bound, so it's $\leq$ all upper bounds, including, in particular, one another.) So as $r \leq s$ and $s \leq r$, $r = s$.
 \end{proof}
 
 \begin{axiom}[Completeness Axiom, a.k.a. Least Upper Bound Property]
@@ -279,12 +286,14 @@ It can be shown that $\inf S = - \sup -S$, so $\inf S$ exists.
 
 
 \begin{example} \label{supexample}
-Let $a \in \mathbb{R}$. Let $S = \{r \in \mathbb{R} : 0 \leq r < a\}$. Then we claim $\sup S = a$. $S$ is not empty as, e.g., $a - 1 \in S$. So by the least upper bound property, $\sup S$ exists. Let $r = \sup S$. We are claiming that $r = a$. We prove this by contradiction. If $r \neq a$, either $r < a$ or $r > a$. For the first case, suppose $r < a$. Then let $s =(a - r)/2$. Then $r < s < a$, so $s \in S$. But then $r$ would not actually be an upper bound, a contradiction. Now suppose $r > a$. But then $a$ is an upper bound for $S$ and $a < r$, contradicting the minimality of $r$. So we must have that $r = a$.
+Let $a \in \mathbb{R}$. Let $S = \{r \in \mathbb{R} : 0 \leq r < a\}$. Then we claim $\sup S = a$. $S$ is not empty as, e.g., $a - 1 \in S$. So by the least upper bound property, $\sup S$ exists. Let $r = \sup S$. We are claiming that $r = a$. We prove this by contradiction. If $r \neq a$, either $r < a$ or $r > a$. For the first case, suppose $r < a$. Then we can find an element between $r$ and $a$ in order to reach a contradiction. Let $s = r + (a - r)/2$ (the midpoint between $r$ and $a$). Then $s < a$, so $s \in S$. But also $a > r$, so $r$ would not actually be an upper bound, a contradiction. Now suppose $r > a$. But then $a$ is an upper bound for $S$ and $a < r$, contradicting the minimality of $r$. So we must have that $r = a$.
 \end{example}
 
-The least upper bound property does not apply to, e.g. $\mathbb{Q}$. Any subset of $\mathbb{R}$ whose least upper bound is $\sqrt{2}$ is an example of this, such as Example \ref{supexample} in the previous paragraph with $a = \sqrt{2}$. A lot of expository material in lower-division mathematics just assumes some field $\mathbb{F}$, and the results apply to any such field, including $\mathbb{Q}$ and $\mathbb{R}$. But any result predicated on the least upper bound theory does not apply to the rationals.
+The least upper bound property does not apply to, e.g. $\mathbb{Q}$. Any subset of $\mathbb{Q}$ whose least upper bound is $\sqrt{2}$ is an example of this, such as $\{r \in \mathbb{Q} : 0 \leq r < \sqrt{2}\}$. Linear algebra classes will often just assume a vector space over a field $\mathbb{F}$, and the results apply to any such field, including $\mathbb{Q}$ and $\mathbb{R}$. But any result predicated on the least upper bound property does not apply to the rationals (as well as many other sets, but including the rationals in particular, which otherwise have the properties of what we intuitively think about with numbers).
 
-Constructing sets and taking their minimum or maximum element is a common tactic in mathematics. It's great for creating proofs that an average undergraduate student would never think of!
+Constructing sets and taking their minimum or maximum element is a common tactic in mathematics.
+
+The least upper bound property can be used to prove the existence of square roots. Taking the minimum element of a set is a standard technique for proving the division algorithm for integers.  It's also great for creating proofs that an average undergraduate student would never think of in a reasonable amount of time left to their own devices! I definitely never saw that proof technique or thought of it until I took an upper division math course in college.
 
 \begin{proposition}
 Say $\sup S \in S$. Then $\sup S \ge s$ $\forall s \in S$, so by definition $\sup S = \max S$.
