@@ -38,15 +38,6 @@
 
 \pagebreak
 
-\section{Disclaimer}
-
-I haven't taken a university math course in many years. There may very well
-be typos and outright mathematical errors!
-
-Strictly speaking, I have no business writing this.
-
-\section{Introduction}
-
 \epigraph{Do not ask permission to understand. Do not wait for the word of authority. Seize reason in your own hand. With your own teeth savor the fruit.}{Strichartz, \cite{strichartz}}
 
 \epigraph{We shall not cease from exploration. And the end of all our exploring will be to arrive where we started and know the place for the first time.}{T. S. Eliot}
@@ -56,6 +47,15 @@ Strictly speaking, I have no business writing this.
 \epigraph{What we hope ever to do with ease, we must first learn to do with diligence.}{Samuel Johnson}
 
 \epigraph{Get your fundamentals on lock so that you can start getting into the ill advanced shit. This is universally applicable.}{Earl Sweatshirt}
+
+\section{Disclaimer}
+
+I haven't taken a university math course in many years. There may very well
+be typos and outright mathematical errors!
+
+Strictly speaking, I have no business writing this.
+
+\section{Introduction}
 
 This document is intended to do two things: first, to summarize key theorems of difficult mathematical subjects as I'm studying them for my own purposes. Eventually, it would be nice to have this be a summary of the math needed for machine learning. But for now, things will be even more terse than an upper-division textbook.
 
@@ -219,8 +219,8 @@ $\{[x] \ | \ x \in S \}$ is a partition of $S$.
 The following is taken from various calculus/analysis books, including Spivak's {\it Calculus} \cite{spivak} and Ross' {\it Elementary Analysis} \cite{ross}. Examples often correspond to exercise in the texts and the order follows that of the books. Although I drew this from multiple books, the amount of overlap between them is pretty high, although clearly analysis books will focus more on theory and less on calculation than a calculus book. So if for some reason you're considering what book to buy, there are pretty much only four categories of book to consider:
 
 \begin{itemize}
-\item Standard computational introductory calculus book, few or no proofs
-\item Rigorous calculus book, like \cite{spivak}
+\item Standard computational introductory calculus book, few or no proofs. This document is almost certainly unreadable if you have not at least gotten as far as that in the standard academic learning path found in North America.
+\item Rigorous calculus book suitable for an honors calculus course\footnote{which is different from AP Calculus classes offered in high schools, which is super computational and is easy to get a 5 on without knowing why the calculations you're doing work}, like \cite{spivak}
 \item Introductory analysis book, like \cite{ross}
 \item Rigorous undergraduate analysis book (which I haven't gotten to yet)
 \end{itemize}
@@ -286,10 +286,10 @@ It can be shown that $\inf S = - \sup -S$, so $\inf S$ exists.
 
 
 \begin{example} \label{supexample}
-Let $a \in \mathbb{R}$. Let $S = \{r \in \mathbb{R} : 0 \leq r < a\}$. Then we claim $\sup S = a$. $S$ is not empty as, e.g., $a - 1 \in S$. So by the least upper bound property, $\sup S$ exists. Let $r = \sup S$. We are claiming that $r = a$. We prove this by contradiction. If $r \neq a$, either $r < a$ or $r > a$. For the first case, suppose $r < a$. Then we can find an element between $r$ and $a$ in order to reach a contradiction. Let $s = r + (a - r)/2$ (the midpoint between $r$ and $a$). Then $s < a$, so $s \in S$. But also $a > r$, so $r$ would not actually be an upper bound, a contradiction. Now suppose $r > a$. But then $a$ is an upper bound for $S$ and $a < r$, contradicting the minimality of $r$. So we must have that $r = a$.
+Let $a \in \mathbb{R}$. Let $S = \{r \in \mathbb{R} : 0 \leq r < a\}$. Then we claim the obvious fact that $\sup S = a$, which we will now try to prove somewhat carefully in a pattern reminiscent of other proofs of other facts that are not as entirely obvious. First, observe that $S$ is not empty\footnote{while this is obvious, it's an important step to go through in order to be able to apply the least upper bound property} as, e.g., $a - 1 \in S$. So by the least upper bound property, $\sup S$ exists. Let $r = \sup S$. We are claiming that $r = a$. We prove this by contradiction. To do this, suppose $r \neq a$. Then either $r < a$ or $r > a$. For the first case, suppose $r < a$. Then we can find an element between $r$ and $a$ in order to reach a contradiction. Let $s = r + (a - r)/2$ (the midpoint between $r$ and $a$). Then $0 \leq s < a$, so $s \in S$. But also $a > r$, so $r$ would not actually be an upper bound (since it is not greater than or equal to $a$), a contradiction. Now suppose $r > a$. But then $a$ is an upper bound for $S$ and $a < r$, contradicting the minimality of $r$. So we must have that $r = a$.
 \end{example}
 
-The least upper bound property does not apply to, e.g. $\mathbb{Q}$. Any subset of $\mathbb{Q}$ whose least upper bound is $\sqrt{2}$ is an example of this, such as $\{r \in \mathbb{Q} : 0 \leq r < \sqrt{2}\}$. Linear algebra classes will often just assume a vector space over a field $\mathbb{F}$, and the results apply to any such field, including $\mathbb{Q}$ and $\mathbb{R}$. But any result predicated on the least upper bound property does not apply to the rationals (as well as many other sets, but including the rationals in particular, which otherwise have the properties of what we intuitively think about with numbers).
+The least upper bound property does not apply to, e.g., $\mathbb{Q}$. Any subset of $\mathbb{Q}$ whose least upper bound is irrational is an example of this, such as $\{r \in \mathbb{Q} : 0 \leq r < \sqrt{2}\}$ (since $\sqrt{2} \notin \mathbb{Q}$). Linear algebra classes will often just assume a vector space over a field $\mathbb{F}$, and the results apply to any such field, including $\mathbb{Q}$ and $\mathbb{R}$. But any result predicated on the least upper bound property does not apply to the rationals (as well as many other sets, but including the rationals in particular, which otherwise have the properties of what we intuitively think about with numbers).
 
 Constructing sets and taking their minimum or maximum element is a common tactic in mathematics.
 
