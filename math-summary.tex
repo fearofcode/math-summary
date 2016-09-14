@@ -224,14 +224,7 @@ $\{[x] \ | \ x \in S \}$ is a partition of $S$.
 
 \section{Calculus and Analysis}
 
-The following is taken from various calculus/analysis books, including Spivak's {\it Calculus} \cite{spivak} and Ross' {\it Elementary Analysis} \cite{ross}. Examples often correspond to exercise in the texts and the order follows that of the books. Although I drew this from multiple books, the amount of overlap between them is pretty high, although clearly analysis books will focus more on theory and less on calculation than a calculus book. So if for some reason you're considering what book to buy, there are pretty much only four categories of book to consider:
-
-\begin{itemize}
-\item Standard computational introductory calculus book, few or no proofs. This document is almost certainly unreadable if you have not at least gotten as far as that in the standard academic learning path found in North America.
-\item Rigorous calculus book suitable for an honors calculus course\footnote{which is different from AP Calculus classes offered in high schools, which is super computational and is easy to get a 5 on without knowing why the calculations you're doing work}, like \cite{spivak}
-\item Introductory analysis book, like \cite{ross}
-\item Rigorous undergraduate analysis book (which I haven't gotten to yet)
-\end{itemize}
+The following is taken from various calculus/analysis books, including Spivak's {\it Calculus} \cite{spivak} and Ross' {\it Elementary Analysis} \cite{ross}. Examples often correspond to exercise in the texts and the order follows that of the books. Although I drew this from multiple books, the amount of overlap between them is pretty high, although clearly analysis books will focus more on theory and less on calculation than a calculus book.
 
 \subsection{Bounds, sup, inf, the Completeness Axiom}
 
@@ -297,11 +290,9 @@ It can be shown that $\inf S = - \sup -S$, so $\inf S$ exists.
 Let $a \in \mathbb{R}$. Let $S = \{r \in \mathbb{R} : 0 \leq r < a\}$. Then we claim the obvious fact that $\sup S = a$, which we will now try to prove somewhat carefully in a pattern reminiscent of other proofs of other facts that are not as entirely obvious. First, observe that $S$ is not empty\footnote{while this is obvious, it's an important step to go through in order to be able to apply the least upper bound property} as, e.g., $a - 1 \in S$. So by the least upper bound property, $\sup S$ exists. Let $r = \sup S$. We are claiming that $r = a$. We prove this by contradiction. To do this, suppose $r \neq a$. Then either $r < a$ or $r > a$. For the first case, suppose $r < a$. Then we can find an element $s$ between $r$ and $a$ ($r < s < a$) in order to reach a contradiction. Let $s = r + (a - r)/2$ (the midpoint between $r$ and $a$). Then $0 \leq s < a$, so $s \in S$. But also $s > r$ (as $a - r > 0$ so $s = r + (a - r)/2 > r$), so $r$ would not actually be an upper bound (since it is not greater than or equal to $s$), a contradiction. Now suppose $r > a$. But $a$ is an upper bound for $S$ (as, for all $r \in S$, $r < a$, so $a$ is an upper bound of $S$) with $a < r$, contradicting the minimality of $r$. So we must have that $r = a$.\footnote{Apologies for the verbosity, but hopefully this makes the proof easier to follow.}
 \end{example}
 
-The least upper bound property does not apply to, e.g., $\mathbb{Q}$. Any subset of $\mathbb{Q}$ whose least upper bound is irrational is an example of this, such as $\{r \in \mathbb{Q} : 0 \leq r < \sqrt{2}\}$ (since $\sqrt{2} \notin \mathbb{Q}$). Linear algebra classes will often just assume a vector space over a field $\mathbb{F}$, and the results apply to any such field, including $\mathbb{Q}$ and $\mathbb{R}$. But any result predicated on the least upper bound property does not apply to the rationals (as well as many other sets, but including the rationals in particular, which otherwise have the properties of what we intuitively think about with numbers).
+The least upper bound property does not apply to, e.g., $\mathbb{Q}$. Any subset of $\mathbb{Q}$ whose least upper bound is irrational is an example of this, such as $\{r \in \mathbb{Q} : 0 \leq r < \sqrt{2}\}$ (since $\sqrt{2} \notin \mathbb{Q}$).
 
-Constructing sets and taking their minimum or maximum element is a common tactic in mathematics.
-
-The least upper bound property can be used to prove the existence of square roots. Taking the minimum element of a set is a standard technique for proving the division algorithm for integers.  It's also great for creating proofs that an average undergraduate student would never think of in a reasonable amount of time left to their own devices! I definitely never saw that proof technique or thought of it until I took an upper division math course in college.
+The least upper bound property can be used to prove the existence of square roots. Taking the minimum element of a set is a standard technique for proving the division algorithm for integers. 
 
 \begin{proposition}
 Say $\sup S \in S$. Then $\sup S \ge s$ $\forall s \in S$, so by definition $\sup S = \max S$.
@@ -316,29 +307,146 @@ So $\inf S \le \sup S$.
 In Proposition \ref{bound-comparison}, suppose $\inf S = \sup S$. Then $\inf S = s = \sup S$, so $S = \{s\}$.
 \end{proposition}
 
-\subsection{Limits}
+\subsection{Sequences, series, and limits}
 
+\begin{definition} 
+A sequence of real numbers $a_1$, $a_2$, $\ldots$ \textbf{converges} to $a \in \mathbb{R}$ if for all $\epsilon > 0$ there exists $N \in \mathbb{N}$ such that for all $n > N$,
+
+\begin{center}
+$|a_n - a| < \epsilon$
+\end{center}
+
+If this is the case, the sequence is called \textbf{convergent} and we can write $\{a_n\} \to a$ or $\lim_{n \to \infty} a_n = a$. $a$ is the \textbf{limit} of $\{a_n\}$. If it does not converge, it \textbf{diverges} (is divergent).
+\end{definition}
+
+This means we can take $\{a_n\}$ as close as we want to $a$ by finding an $N$ for any given $\epsilon$ such that $|a_n - a| < \epsilon$. We can take epsilon as small as we like as long as $\epsilon > 0$.
+
+Actually proving that a sequence converges winds up being an exercise in grappling with sometimes tedious
+absolute value expressions.
+
+Convergent sequences compose the way you'd expect.
+
+\pagebreak
+
+\begin{proposition}
+Let $\{a_n\}$ and $\{b_n\}$ be convergent sequences such that
+
+\begin{align}
+\lim_{n \to \infty} a_n = a, \lim_{n \to \infty} b_n = a.
+\end{align}
+
+Then
+
+\begin{align}
+\lim_{n \to \infty} (a_n + b_n) = a + b \\
+\lim_{n \to \infty} (a_n b_n) = ab.
+\end{align}
+
+If $a \neq 0$ and $a_n \neq 0$ for all $n$,
+
+\begin{equation}
+\lim_{n \to \infty} \frac{1}{a_n} = \frac{1}{a}.
+\end{equation}
+
+If $b \neq 0$ and $b_n \neq 0$ for all $n$,
+
+\begin{equation}
+\lim_{n \to \infty} \frac{a_n}{b_n} = \frac{a}{b}.
+\end{equation}
+
+\end{proposition}
+
+\begin{theorem}[The squeeze theorem] Let $n, N \in \mathbb{N}$ and let $\{a_n\}$, $\{b_n\}$, and $\{c_n\}$ be sequences. Suppose for all $n > N$,
+
+\begin{center}
+$a_n \leq b_n \leq c_n $\\
+$\lim_{n \to \infty} a_n = \lim_{n \to \infty} c_n = a$.
+\end{center}
+
+Then
+
+\begin{equation}
+\lim_{n \to \infty} b_n = a.
+\end{equation}
+
+\end{theorem}
+
+\begin{definition}
+A sequence $\{a_n\}$ is \textbf{increasing} if $a_n \leq a_{n+1}$ for all $n$. It is \textbf{decreasing} if $a_n \geq a_{n+1}$. $\{a_n\}$ is \textbf{monotonic} if it is increasing or decreasing.
+\end{definition}
+
+\begin{definition}
+If a sequence $\{a_n\}$ is contained in an interval $[-B, B]$ such that $|a_n| <= B$, then $\{a_n\}$ is \textbf{bounded}. $B$ is a \textbf{bound}.
+
+$\{a_n\}$ is \textbf{bounded above} if there exists some $K \in \mathbb{R}$ such that $a_n < K$ for all $n$. $\{a_n\}$ is \textbf{bounded below} if there exists $M \in \mathbb{R}$ such that $M < a_n$ for all $n$.
+\end{definition}
+
+\begin{theorem} \label{convergent-bounded}
+Every convergent sequence is bounded.
+\end{theorem}
+
+The contrapositive of Theorem \ref{convergent-bounded} is that if a sequence is not bounded, it is divergent. So it suffices to show that a series is not bounded to show it diverges.
+
+\begin{theorem}[The monotone convergence theorem]
+Every bounded monotone sequence converges.
+\end{theorem}
+
+So to show that a sequence converges, it suffices to show boundedness and increasing or decreasing.
+
+\begin{definition}
+Fix some $r \in \mathbb{R}$. Let $\{a_n\}$ be a sequence such that $a_{n+1} = ra_n$. Then $\{a_n\}$ is a \textbf{geometric sequence}.
+\end{definition}
+
+\begin{theorem}
+Consider the sequence $\{r^n\}$, a geometric sequence whose terms have ratio $r$. 
+
+\begin{itemize}
+\item If $|r| < 1$, $\{r^n\} \to 0$.
+\item If $r = 1$, $\{1^n\} \to 1$.
+\item If $r > 1$ or $r \leq -1$, $\{r^n\}$ diverges.
+\end{itemize}
+
+\end{theorem}
+
+\begin{definition}
+Given a sequence $\{a_n\}$, define a \textbf{series} $\{s_n\} = \sum\limits_{i=1}^n a_i$.
+
+If the limit $\sum\limits_{i=1}^\infty a_i = \lim_{n \to \infty} s_n$ exists, $\{s_n\}$ converges. Otherwise, it diverges.
+\end{definition}
+
+\begin{theorem} \label{convergent-series-sequence}
+If $\sum\limits_{i=1}^\infty a_i = \lim_{n \to \infty} s_n$ converges, $\lim_{n \to \infty} a_n = 0$.
+\end{theorem}
+
+Taking the contrapositive of Theorem \ref{convergent-series-sequence} indicates that if $\lim_{n \to \infty} a_n \neq 0$, the associated series diverges.
+
+\begin{theorem}
+Let $|r| < 1$. The geometric series $s_n = 1 + r + r^2 + \ldots + r^n$ converges:
+
+\begin{equation}
+\sum\limits_{n=0}^\infty r^n = \frac{1}{1-r}
+\end{equation}
+
+and $s_n = \frac{1 - r^{n+1}}{1 - r}$. If $|r| >= 1$, the series diverges.
+\end{theorem}
+
+\subsection{Functions and their limits}
 
 \begin{definition}[$(\epsilon, \delta)$ limit of a function]
 
 Let $f: \mathbb{R} \to \mathbb{R}$ be a function. 
 
-\begin{equation}
-\lim_{x \to a} f(x) = L
-\end{equation}
+\begin{center}
+$\lim_{x \to a} f(x) = L$
+\end{center}
 
 if for every $\epsilon > 0$ there exists $\delta > 0$ such that if $0 < |x-a| <
 \delta$, then $|f(x) - L| < \epsilon$.
  
 \end{definition}
 
-This formalizes the idea of being able to take $f(x)$ as close to $L$ as we want
+Analogous to the definition of a convergent sequence, this formalizes the idea of being able to take $f(x)$ as close to $L$ as we want
 by making $x$ sufficiently close to $a$.
-
-Actually proving these winds up being an exercise in grappling with bullshit
-absolute value expressions. Your basic plan of attack will probably be to let
-$\epsilon > 0$ and find a suitable expression for $\delta$ in terms of
-$\epsilon$ so that $|f(x) -L| < \epsilon$ once $|x-a|< \delta$ is assumed.
 
 \begin{example} 
 
