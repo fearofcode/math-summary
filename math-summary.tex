@@ -420,6 +420,10 @@ If $\sum\limits_{i=1}^\infty a_i = \lim_{n \to \infty} s_n$ converges, $\lim_{n 
 
 Taking the contrapositive of Theorem \ref{convergent-series-sequence} indicates that if $\lim_{n \to \infty} a_n \neq 0$, the associated series diverges.
 
+\begin{example} 
+The most common example of a sequence that converges but whose series diverges is $\{\frac{1}{n}\}$. $\lim_{n \to \infty} \frac{1}{n} = 0$, but the sum of its terms is unbounded, so the series $\sum\limits_{n=1}^\infty \frac{1}{n}$ diverges. So merely a summation expression whose individual values approach zero does not suffice for convergence. And actually the difference of terms in the series approach zero, which shows that, too, is insufficient evidence for convergence. This is perhaps a simple example of where something that may seem to be ``intuitively true" or ``obvious" is in fact false, one of many when dealing with infinities and other things the human brain is not good at intuitively reasoning about.
+\end{example}
+
 \begin{theorem}
 Let $|r| < 1$. The geometric series $s_n = 1 + r + r^2 + \ldots + r^n$ converges:
 
@@ -428,6 +432,58 @@ Let $|r| < 1$. The geometric series $s_n = 1 + r + r^2 + \ldots + r^n$ converges
 \end{equation}
 
 and $s_n = \frac{1 - r^{n+1}}{1 - r}$. If $|r| >= 1$, the series diverges.
+\end{theorem}
+
+\begin{theorem}[Comparison theorem]
+Let $\{a_n\}$ and $\{b_n\}$ be sequences such that for all $n$,
+
+\begin{center}
+$0 \leq a_n \leq b_n$.
+\end{center}
+
+If $\sum\limits_{n=1}^\infty b_n$ converges, then $\sum\limits_{n=0}^\infty a_n$ converges.
+\end{theorem}
+
+\begin{theorem}[Limit comparison theorem]
+Let $\sum\limits_{n=1}^\infty a_n$ and $\sum\limits_{n=1}^\infty a_n$ be series of positive terms. If $\lim_{n \to \infty} \frac{a_n}{b_n}$ exists and is positive, $\sum\limits_{n=1}^\infty a_n$ converges if and only if $\sum\limits_{n=1}^\infty b_n$ converges.
+\end{theorem}
+
+\begin{theorem} \label{absolute-convergence-theorem}
+If $\sum\limits_{n=1}^\infty |a_n|$ converges, so does $\sum\limits_{n=1}^\infty a_n$.
+\end{theorem}
+
+\begin{theorem}
+Let $\{a_n\}$ be a decreasing non-negative ($ a_1 \geq a_2 \geq \ldots \geq 0$) sequence with $\lim_{n \to \infty} a_n = 0$. Then $\sum\limits_{n=1}^\infty (-1)^n a_n$ converges.
+\end{theorem}
+
+\begin{definition}
+If  $\sum\limits_{n=1}^\infty a_n$ converges and  $\sum\limits_{n=1}^\infty |a_n|$ diverges,  $\sum\limits_{n=1}^\infty a_n$ converges \textbf{conditionally}. If  $\sum\limits_{n=1}^\infty |a_n|$ converges (and therefore  $\sum\limits_{n=1}^\infty a_n$ converges by Theorem \ref{absolute-convergence-theorem}, so both converge), $\sum\limits_{n=1}^\infty a_n$ converges \textbf{absolutely}.
+\end{definition}
+
+\begin{theorem}[Ratio test]
+Let $\{a_n\}$ be a sequence with $\lim_{n \to \infty} |\frac{a_{n+1}}{a_n}| = L \in \mathbb{R}$.
+
+\begin{itemize}
+\item If $L < 1$, $\sum\limits_{n=1}^\infty a_n$ converges absolutely.
+\item If $L > 1$, $\sum\limits_{n=1}^\infty a_n$ diverges.
+\item The case $L = 1$ gives no information.
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[Nested interval theorem]
+Let $\{I_n\}$ be a sequence of closed intervals such that each element of the sequence is nested in the previous one (i.e., $I_{n+1} \subset I_n$ for all $n$), each term of $\{I_n\}$ has at least one point in common. If the length of $I_n$ approaches 0, there is exactly one point in common.
+\end{theorem}
+
+\begin{definition}[Cauchy criterion]
+A sequence $\{a_n\}$ is a \textbf{Cauchy sequence} if for all $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $n, m > N$, 
+
+\begin{equation}
+|a_n - a_m| < \epsilon.
+\end{equation}
+\end{definition}
+
+\begin{theorem}
+Every Cauchy sequence converges.
 \end{theorem}
 
 \subsection{Functions and their limits}
