@@ -406,7 +406,7 @@ Let $\{a_n\}$ be a convergence sequence. Let $\epsilon > 0$. By assumption, ther
 
 \begin{align}
 |a_n| & = |a + (a_n - a)| \\
-& \leq |a| + |a_n - \epsilon| \\
+& \leq |a| + |a_n - a| \\
 & < |a| + 1.
 \end{align}
 
@@ -414,6 +414,8 @@ Let $\alpha = \max(|a_1|, |a_2|, \ldots, |a_N|, |a| + 1)$. By construction, $\al
 \end{proof}
 
 The contrapositive of Theorem \ref{convergent-bounded} is that if a sequence is not bounded, it is divergent. So it suffices to show that a series is not bounded to show it diverges.
+
+The technique of adding and subtracting the same expression (i.e. where we rewrote $a_n$ as $a + (a_n - a)$ above) in order to transform an inequality to able to apply a convergence criterion is a common proof technique worth keeping in mind.
 
 \begin{theorem}[The monotone convergence theorem]
 Every bounded monotone sequence converges.
