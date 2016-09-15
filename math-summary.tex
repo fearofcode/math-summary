@@ -356,7 +356,23 @@ If $b \neq 0$ and $b_n \neq 0$ for all $n$,
 
 \end{proposition}
 
-\begin{theorem}[The squeeze theorem] Let $n, N \in \mathbb{N}$ and let $\{a_n\}$, $\{b_n\}$, and $\{c_n\}$ be sequences. Suppose for all $n > N$,
+\begin{proof}
+Let $\epsilon > 0$. There exists $N_1$ such that for all $n > N_1$, $|a_n - a| < \epsilon/2$, as we can take any difference we like as long as it's greater than zero, and $\epsilon/2 > 0$ since $\epsilon > 0$ and $2 > 0$. Likewise there exists $N_2$ such that for all $n > N_2$, $|b_n - b| < \epsilon/2$.
+
+Take $N = \max(N_1, N_2)$. Then for all $n > N$, by rearranging terms and using the triangle inequality,
+
+\begin{align}
+|(a_n + b_n) - (a+b)| & =  |(a_n - a) + (b_n - b)| \\
+& \leq  |a_n - a| + |b_n - b| \\
+& <  \epsilon/2 + \epsilon/2 = \epsilon.
+\end{align}
+
+So $\lim_{n \to \infty} (a_n + b_n) = a + b$.
+
+The other claims in the theorem have ugly algebra so I'm not going to type it here.
+\end{proof}
+
+\begin{theorem}[The squeeze theorem] Let $a \in \mathbb{R}$. Let $n, N \in \mathbb{N}$ and let $\{a_n\}$, $\{b_n\}$, and $\{c_n\}$ be sequences. Suppose for all $n > N$,
 
 \begin{center}
 $a_n \leq b_n \leq c_n $\\
@@ -384,6 +400,18 @@ $\{a_n\}$ is \textbf{bounded above} if there exists some $K \in \mathbb{R}$ such
 \begin{theorem} \label{convergent-bounded}
 Every convergent sequence is bounded.
 \end{theorem}
+
+\begin{proof}
+Let $\{a_n\}$ be a convergence sequence. Let $\epsilon > 0$. By assumption, there exists $N$ such that for all $n > N$, $|a_n - a| < \epsilon$. In particular, when $\epsilon = 1$, $|a_n - a| < 1$. For all $n > N$, 
+
+\begin{align}
+|a_n| & = |a + (a_n - a)| \\
+& \leq |a| + |a_n - \epsilon| \\
+& < |a| + 1.
+\end{align}
+
+Let $\alpha = \max(|a_1|, |a_2|, \ldots, |a_N|, |a| + 1)$. By construction, $\alpha \geq |a_i|$ for $1 \leq i \leq N$. For $i > N$, $|a_i| < |a| + 1 \leq \alpha$. So $|a_i| \leq \alpha$ for all $i$. So by definition of boundedness, $\{a_n\}$ is bounded, so we are done.
+\end{proof}
 
 The contrapositive of Theorem \ref{convergent-bounded} is that if a sequence is not bounded, it is divergent. So it suffices to show that a series is not bounded to show it diverges.
 
@@ -424,7 +452,7 @@ Taking the contrapositive of Theorem \ref{convergent-series-sequence} indicates 
 The most common example of a sequence that converges but whose series diverges is $\{\frac{1}{n}\}$. $\lim_{n \to \infty} \frac{1}{n} = 0$, but the sum of its terms is unbounded, so the series $\sum\limits_{n=1}^\infty \frac{1}{n}$ diverges. So merely a summation expression whose individual values approach zero does not suffice for convergence. And actually the difference of terms in the series approach zero, which shows that, too, is insufficient evidence for convergence. This is perhaps a simple example of where something that may seem to be ``intuitively true" or ``obvious" is in fact false, one of many when dealing with infinities and other things the human brain is not good at intuitively reasoning about.
 \end{example}
 
-\begin{theorem}
+\begin{theorem} \label{geometric-series}
 Let $|r| < 1$. The geometric series $s_n = 1 + r + r^2 + \ldots + r^n$ converges:
 
 \begin{equation}
@@ -444,6 +472,29 @@ $0 \leq a_n \leq b_n$.
 If $\sum\limits_{n=1}^\infty b_n$ converges, then $\sum\limits_{n=0}^\infty a_n$ converges.
 \end{theorem}
 
+\begin{example}
+We can use the comparison theorem to show that $\sum\limits_{n=1}^\infty \frac{1}{n^2}$ converges. As $n > 0$, we have that:
+
+\begin{equation}\label{comparison-inequality}
+\frac{1}{n^2} < \frac{1}{n(n-1)}
+\end{equation}
+
+as $n^2 > n^2 -n = n(n-1)$, so inverting it produces \ref{comparison-inequality}. Proceeding, we have
+
+\begin{equation}
+\frac{1}{n(n-1)} = \frac{n - (n-1)}{n(n-1)} = \frac{1}{n-1} - \frac{1}{n},
+\end{equation}
+
+so 
+
+\begin{align}
+\sum\limits_{n=2}^k \frac{1}{n(n-1)} & = \sum\limits_{n=2}^k (\frac{1}{n-1} - \frac{1}{n}) \\
+& = 1 - \frac{1}{k}.
+\end{align}
+
+So $\sum\limits_{n=1}^k \frac{1}{n^2} < 1 - 1/k$, and $\lim_{k \to \infty} (1 - 1/k) = 1 - 0 = 1$, so it converges. So our series is less than another sequences we know converges, so by the comparison theorem, $\sum\limits_{n=1}^k \frac{1}{n^2}$ converges.
+\end{example}
+
 \begin{theorem}[Limit comparison theorem]
 Let $\sum\limits_{n=1}^\infty a_n$ and $\sum\limits_{n=1}^\infty a_n$ be series of positive terms. If $\lim_{n \to \infty} \frac{a_n}{b_n}$ exists and is positive, $\sum\limits_{n=1}^\infty a_n$ converges if and only if $\sum\limits_{n=1}^\infty b_n$ converges.
 \end{theorem}
@@ -452,7 +503,7 @@ Let $\sum\limits_{n=1}^\infty a_n$ and $\sum\limits_{n=1}^\infty a_n$ be series 
 If $\sum\limits_{n=1}^\infty |a_n|$ converges, so does $\sum\limits_{n=1}^\infty a_n$.
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}[Alternating series theorem]
 Let $\{a_n\}$ be a decreasing non-negative ($ a_1 \geq a_2 \geq \ldots \geq 0$) sequence with $\lim_{n \to \infty} a_n = 0$. Then $\sum\limits_{n=1}^\infty (-1)^n a_n$ converges.
 \end{theorem}
 
@@ -470,12 +521,16 @@ Let $\{a_n\}$ be a sequence with $\lim_{n \to \infty} |\frac{a_{n+1}}{a_n}| = L 
 \end{itemize}
 \end{theorem}
 
+\begin{example}
+Consider the sequence $\{\frac{5^n}{7^n}\}$. $\lim_{n \to \infty} |\frac{a_{n+1}}{a_n}| = \frac{5}{7} < 1$, so by the ratio test, the series $\sum\limits_{n=1}^\infty \frac{5^n}{7^n}$ converges absolutely. By Theorem \ref{convergent-series-sequence}, the sequence converges to 0. By Theorem \ref{geometric-series}, the limit of the series is $\frac{1}{1-5/7}$ where $r = 5/7$.
+\end{example}
+
 \begin{theorem}[Nested interval theorem]
 Let $\{I_n\}$ be a sequence of closed intervals such that each element of the sequence is nested in the previous one (i.e., $I_{n+1} \subset I_n$ for all $n$), each term of $\{I_n\}$ has at least one point in common. If the length of $I_n$ approaches 0, there is exactly one point in common.
 \end{theorem}
 
 \begin{definition}[Cauchy criterion]
-A sequence $\{a_n\}$ is a \textbf{Cauchy sequence} if for all $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $n, m > N$, 
+A real sequence $\{a_n\}$ is a \textbf{Cauchy sequence} if for all $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $n, m > N$, 
 
 \begin{equation}
 |a_n - a_m| < \epsilon.
@@ -483,7 +538,7 @@ A sequence $\{a_n\}$ is a \textbf{Cauchy sequence} if for all $\epsilon > 0$, th
 \end{definition}
 
 \begin{theorem}
-Every Cauchy sequence converges.
+A sequence is Cauchy if and only if it converges.
 \end{theorem}
 
 \subsection{Functions and their limits}
