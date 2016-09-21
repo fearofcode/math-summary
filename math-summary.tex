@@ -81,14 +81,42 @@ Interspersed between the main definitions and theorems are comments that themsel
 
 \section{Basic Stuff}
 
-\subsection{Triangle Inequality}
+\subsection{Inequalities}
+The mathematical kind, not how our tax system is in dire need of reform.
+
 Let $|x|$ be the absolute value of $x$.
 
-\begin{equation} \label{triangle-inequality}
+\begin{proposition}[Triangle Inequality] \label{triangle-inequality}
+
+\begin{equation} 
 |a + b| \leq |a| + |b| 
 \end{equation}
 
-for all $a, b \in \mathbb{R}$. Geometrically, it has the interpretation that the shortest path between any two points is a straight line.
+for all $a, b \in \mathbb{R}$.
+
+\end{proposition}
+
+Geometrically, it has the interpretation that the shortest path between any two points is a straight line.
+
+\begin{proposition}
+Let $x$, $y \in \mathbb{R}$.
+
+\begin{equation}
+|x| - |y| \leq |x + y|.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Pay attention to how this is proved, because math people fucking love stupid tricks like this that have zero basis in intuition and if you were to derive it on your own is almost surely from just trying things:
+
+OK, we can write $x = (x + y) - y$ for all $y$.
+
+So $|x| = | (x+y) - y) | \leq |x + y| + |y|$.
+
+Subtracting the $|y|$ term, we have $|x| - |y| \leq |x + y|$.
+\end{proof}
+
+An astonishing amount of proofs in equalities, and therefore real analysis (since real analysis has shitloads of inequalities -- all the fundamental definitions are defined in terms of them), are based on stupid add-and-subtract tricks like the above.
 
 \subsection{Sets}
 
