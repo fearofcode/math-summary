@@ -582,6 +582,8 @@ if for every $\epsilon > 0$ there exists $\delta > 0$ such that if $0 < |x-a| <
 Analogous to the definition of a convergent sequence, this formalizes the idea of being able to take $f(x)$ as close to $L$ as we want
 by making $x$ sufficiently close to $a$.
 
+Note that $0 < |x-a|$ means that $x \neq a$, so it cannot be neglected; the ``if`` condition cannot be simplified to $|x -a | < \delta$, which would allow for $x = a$, which wouldn't work for a function $f$ that approaches some limit $L$ at $x$ but for which $f(x)$ is undefined. They are not nice, differentiable functions, but they may have limits fair and square and to ensure this we need to use the right definition which stipulates that $x \neq a$.
+
 \begin{example} 
 
 \emph{Show that $\lim_{x \to 1} (3x-1) = 2$}.
