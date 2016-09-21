@@ -450,7 +450,7 @@ If $\sum\limits_{i=1}^\infty a_i = \lim_{n \to \infty} s_n$ converges, $\lim_{n 
 
 Taking the contrapositive of Theorem \ref{convergent-series-sequence} indicates that if $\lim_{n \to \infty} a_n \neq 0$, the associated series diverges.
 
-\begin{example} 
+\begin{example} \label{harmonic-series-divergence}
 The most common example of a sequence that converges but whose series diverges is $\{\frac{1}{n}\}$. $\lim_{n \to \infty} \frac{1}{n} = 0$, but the sum of its terms is unbounded, so the series $\sum\limits_{n=1}^\infty \frac{1}{n}$ diverges. So merely a summation expression whose individual values approach zero does not suffice for convergence. And actually the difference of terms in the series approach zero, which shows that, too, is insufficient evidence for convergence. This is perhaps a simple example of where something that may seem to be ``intuitively true" or ``obvious" is in fact false, one of many when dealing with infinities and other things the human brain is not good at intuitively reasoning about.
 \end{example}
 
@@ -509,6 +509,24 @@ If $\sum\limits_{n=1}^\infty |a_n|$ converges, so does $\sum\limits_{n=1}^\infty
 Let $\{a_n\}$ be a decreasing non-negative ($ a_1 \geq a_2 \geq \ldots \geq 0$) sequence with $\lim_{n \to \infty} a_n = 0$. Then $\sum\limits_{n=1}^\infty (-1)^n a_n$ converges.
 \end{theorem}
 
+\begin{example}
+Consider the series
+
+\begin{equation} \label{divergent-series-example}
+\sum\limits_{n=1}^\infty \frac{1}{n^{1/4}}.
+\end{equation}
+
+Since $n^{1/4} < n$, $1/n < 1/(n^{1/4})$. Now we know the harmonic series ($\sum\limits_{n=1}^\infty \frac{1}{n}$ from Example \ref{harmonic-series-divergence}) diverges. So if series \ref{divergent-series-example} converged, it would imply by the comparison theorem that the harmonic series converges, a contradiction. Evaluating partial sums on a computer also shows the divergent behavior.
+
+But consider the alternating series variant of series \ref{divergent-series-example}:
+
+\begin{equation} \label{alternating-series-example}
+\sum\limits_{n=1}^\infty \frac{(-1)^n}{n^{1/4}}.
+\end{equation}
+
+The sequence $\{1/(n^{1/4}\}$ is a non-negative decreasing sequence, so by the alternating series theorem, series \ref{alternating-series-example} converges.
+\end{example}
+
 \begin{definition}
 If  $\sum\limits_{n=1}^\infty a_n$ converges and  $\sum\limits_{n=1}^\infty |a_n|$ diverges,  $\sum\limits_{n=1}^\infty a_n$ converges \textbf{conditionally}. If  $\sum\limits_{n=1}^\infty |a_n|$ converges (and therefore  $\sum\limits_{n=1}^\infty a_n$ converges by Theorem \ref{absolute-convergence-theorem}, so both converge), $\sum\limits_{n=1}^\infty a_n$ converges \textbf{absolutely}.
 \end{definition}
@@ -543,8 +561,11 @@ A real sequence $\{a_n\}$ is a \textbf{Cauchy sequence} if for all $\epsilon > 0
 A sequence is Cauchy if and only if it converges.
 \end{theorem}
 
-\subsection{Functions and their limits}
+\subsection{Functions, their limits, and continuity}
 
+\begin{definition}
+Let $A, B \subset \mathbb{R}$. A function $f: A \to \mathbb{R}$ is \textbf{bounded} if there exists $m \in \mathbb{R}$, $m > 0$ such that $|f(x)| \leq m$ for all $x \in A$. A function $g: B \to \mathbb{R}$ is \textbf{bounded away from} 0 if there exists $p \in \mathbb{R}$, $p > 0$ such that $|g(x)| > p$ for all $x \in B$. 
+\end{definition}
 \begin{definition}[$(\epsilon, \delta)$ limit of a function]
 
 Let $f: \mathbb{R} \to \mathbb{R}$ be a function. 
@@ -572,21 +593,18 @@ we want to show that
 |x - 1| < \delta \implies |3x - 3| < \epsilon.
 \end{equation}
 
-This example was clearly chosen because the algebra works out nicely. It
-works out like so: $|3x-3| = |3(x-1)| = 3|x-1| < \epsilon \implies |x-1| <
+This example was clearly chosen because the algebra works out nicely. We do like this: $|3x-3| = |3(x-1)| = 3|x-1| < \epsilon \implies |x-1| <
 \epsilon/3$, so $\delta = \epsilon/3$ is a suitable choice.
 
 Then $|x - 1| < \epsilon/3 \implies |3x-3| = |(x - 1) + (2x-2)| \leq |x-1| +
 |2x-2| = |x-1| + 2|x-1| < \epsilon/3 + 2 \cdot \epsilon/3 = \epsilon,$ so we are
-done.
+done, having used the triangle inequality.
 
 Note that we have used Eq. \ref{triangle-inequality} above.
  
 \end{example}
 
-As you can no doubt surmise, with harder examples this shit gets really depressing.
-
-Limits compose the way you'd expect:
+Limits of functions compose the way you'd expect:
 \begin{proposition}
 Suppose $\lim_{x \to a} f(x) = L$ and $\lim_{x \to a} g(x) = M$. Then
 
@@ -604,8 +622,9 @@ If you can show that the positive ($\lim_{x \to a^{+}} f(x)$) and negative
 ($\lim_{x \to a^{-}} f(x) $) limits of a function are
 different, it follows that the limit does not exist.
 
-
-\subsection{Continuity}
+\begin{theorem}[Squeeze theorem]
+Let $f$, $g$, $h$ be functions. Let $I \subset \mathbb{R}$ be an open interval. Let $c \in \mathbb{R}$ with $c \in I$. If $f(x) \leq g(x) \leq h(x)$ for all $x \in I$, except possibly at $x = c$, and $lim_{x \to c} f(x) = lim_{x \to c} h(x) = L$, $lim_{x \to c} g(x) = L$.
+\end{theorem}
 
 \begin{definition}
 
@@ -622,7 +641,7 @@ Of course continuous functions compose as you'd expect.
 \begin{proposition}
 
 If $f$ and $g$ are continuous at $a$, then $f+g$ and $f \cdot g$ are continuous
-at $a$. If $g(a) \neq 0$, $1/g$ is continuous at $a$.
+at $a$. If $g(a) \neq 0$, $f/g$ and $1/g$ are continuous at $a$.
 
 \end{proposition}
 
@@ -638,6 +657,34 @@ rest of the result follows.
 
 The key thing that happens with a continuous function is that there's an
 interval around $a$ that will share the properties of $f(a)$, like sign.
+
+\begin{definition}
+Let $I \subset \mathbb{R}$ be an interval. A function $f$ is called \textbf{uniformly continuous} on $I$ if for all $\epsilon > 0$, there exists $\delta > 0$ such that $x, z \in I$ and $|x - z| < \delta$, $|f(x) - f(z)| < \epsilon$.
+\end{definition}
+
+This has implications for computing rounded values of functions given rounded inputs. We can derive error bounds based on the error bounds of the inputs.
+
+\begin{proposition}
+If $f$  is continuous on $[a, b]$, $f$ is uniformly continuous on $[a, b]$.
+\end{proposition}
+
+\begin{theorem}[Intermediate value theorem]
+If a function $f$ is continuous on $[a, b]$, $f$ is surjective between $f(a)$ and $f(b)$.
+\end{theorem}
+
+\begin{example}
+This can be used to show, among other things, that a function has a root by showing that it is continuous on an interval and that it changes sign in that interval. Suppose $f$ is continuous on $[a, b]$ and for $c, d \in [a,b]$, $c < d$, $f(c) < 0$ and $f(d) > 0$. Then by the intermediate value theorem, there must exist $e \in [a,b]$, such that $f(e) = 0$, i.e. $f$ has at least one real root in $[a, b]$.
+
+To give a concrete example, an odd-degree polynomial like $f(x) = x^3$ has a real root because $f(x) < 0$ for $x < 0$ and $f(x) > 0$ for $x > 0$. Likewise, sine and cosine, whose value oscillates between -1 and 1 must have real roots.
+\end{example}
+
+\begin{theorem}[Extreme value theorem]
+If $f$ is a continuous function on $[a,b]$, $f$ takes on both a minimum and maximum value in $[a, b]$.
+\end{theorem}
+
+\begin{corollary}
+If $f$ is a continuous function on $(a, b)$ and $f \to \infty$ at $a$ and $b$, $f$ has a minimum value at some point in $(a, b)$. If $f$ tends to $-\infty$ at $a$ and $b$, $f$ has a maximum value in $(a, b)$.
+\end{corollary}
 
 \subsection{Derivatives}
 
