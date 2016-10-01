@@ -88,9 +88,9 @@ Let $|x|$ be the absolute value of $x$.
 
 \begin{proposition}[Triangle Inequality] \label{triangle-inequality}
 
-\begin{equation} 
+\begin{equation*} 
 |a + b| \leq |a| + |b| 
-\end{equation}
+\end{equation*}
 
 for all $a, b \in \mathbb{R}$.
 
@@ -101,9 +101,9 @@ Geometrically, it has the interpretation that the shortest path between any two 
 \begin{proposition}
 Let $x$, $y \in \mathbb{R}$.
 
-\begin{equation}
+\begin{equation*}
 |x| - |y| \leq |x + y|.
-\end{equation}
+\end{equation*}
 \end{proposition}
 
 \begin{proof}
@@ -151,10 +151,10 @@ Let $A$ and $U$ (called the \textbf{universe}) be sets. Suppose $A \subset U$. T
 \begin{theorem}[De Morgan's Laws]
 Let $A$ and $B$ be subsets of some fixed set.
 
-\begin{align}
+\begin{align*}
 (A \cup B)' = A' \cap B' \\
 (A \cap B)' = A' \cup B'
-\end{align}
+\end{align*}
 \end{theorem}
 
 These are easy to see with a Venn diagram or by comparing to the logical version of them you can find on Wikipedia. I would draw one here but doing that in \LaTeX \ is a pain in the ass. Sorry, just draw it on paper or Google it if you're curious.
@@ -249,6 +249,86 @@ $[x] = \{ y \ | \ y \in S, x \sim y\}$ is the \textbf{equivalence class} of $x$.
 \begin{proposition}
 $\{[x] \ | \ x \in S \}$ is a partition of $S$.
 \end{proposition}
+
+\section{Number theory}
+
+This probably has nothing to do with machine learning, I'm just going to write down stuff I learned/found interesting here.
+
+\begin{definition}
+A positive integer $n$ is a \textbf{perfect square} if $n = a^2$ for some $a \in \mathbb{Z}$.
+\end{definition}
+
+\begin{theorem}
+A positive integer is a perfect square if and only if it has an odd number of positive divisors.
+\end{theorem}
+
+The intuitive reason this is true is that divisors naturally occur in pairs:
+
+\begin{equation*}
+24 = 1 \cdot 24 = 2 \cdot 12 = 3 \cdot 8 = 4 \cdot 6
+\end{equation*}
+
+Each pair of distinct divisors $(x, y)$ such that $x \cdot y = n$ for some $n \in \mathbb{N}$ create an even number of divisors as each pair $(x, y)$ comes in twos.
+
+But for a perfect square, one of the set of divisors is $(\sqrt{n}, \sqrt{n})$:
+
+\begin{equation*}
+25 = 1 \cdot 25 = 5 \cdot 5
+\end{equation*}
+
+which is only one additional distinct divisor, namely $\sqrt{n} \in \mathbb{Z}$, so the number of divisors will be odd.
+
+Here's an actual proof that is pretty immediate once you use an integer's prime factorization. It's only long because I make my proofs really verbose.
+
+\begin{proof}
+Let $n \in \mathbb{N}$. 
+
+Suppose $n$ is a perfect square. Then $n = a^2$ for some $a \in \mathbb{N}$. By the Fundamental Theorem of Arithmetic, we can write out $a$'s unique prime factorization:
+
+\begin{equation*}
+a = p_1^{k_1} p_2^{k_2} \cdots p_m^{k_m}
+\end{equation*}
+
+where each $p_i$ is prime, $k_i \geq 1$, and $m \geq 1$.
+
+Any positive divisor of $a$ will have the same prime factorization as $a$, but possibly with exponents of respective $p_i$'s of lower degree. If this were not the case, there would be some $p_j$ in a divisor's prime factorization that did not divide some $p_{j'}$ in $a$. So to form a positive divisor $d$ of $a$, we can take any exponent less than or equal to the respective exponent of $a$'s prime factorization:
+
+\begin{equation*}
+d = p_1^{d_1} p_2^{d_2} \cdots p_m^{d_m}
+\end{equation*}
+
+where we must have each $0 \leq d_i \leq k_i$ for all $i$. So each respective exponent has $k_i + 1$ possible values.
+
+So the number of divisors can be counted as:
+
+\begin{equation*}
+(k_1 + 1) \cdots (k_m + 1).
+\end{equation*}
+
+Now $x = a^2$. So $x$'s prime factorization is just:
+
+\begin{equation*}
+n = \left(p_1^{k_1} p_2^{k_2} \cdots p_m^{k_m}\right)^2 = p_1^{2k_1} p_2^{2k_2} \cdots p_m^{2k_m}.
+\end{equation*}
+
+And to form positive divisors of $n$ we now have $2k_i + 1$ possible values to choose from. So the number of positive divisors is
+
+\begin{equation} \label{exponent-count}
+(2k_1 + 1) \cdots (2k_m + 1).
+\end{equation}
+
+Each term in equation \ref{exponent-count} is odd, so the entire product is odd as an odd times and odd is odd. So $n$ will have an odd number of positive divisors, completing this direction of the proof.
+
+Now for the opposite direction. Suppose $n$ has an odd number of divisors. Then by the above argument and notation, $(k_1 + 1) \cdots (k_m + 1)$ is odd. So each term $k_i + 1$ is odd, for if not the product would be even, creating a contradiction. So $k_i$ is even. Thus $k_i = 2 \cdot l_i$ for some $l_i \in \mathbb{N}$, as $k_i > 0$. Then we can rewrite $n$ as
+
+\begin{align*}
+n &= p_1^{2l_1} p_2^{2l_2} \cdots p_m^{2l_m}  \\
+&= \left(p_1^{l_1} p_2^{l_2} \cdots p_m^{l_m} \right)^2
+\end{align*}
+
+So $n$ is a perfect square.
+
+\end{proof}
 
 \section{Calculus and Analysis}
 
