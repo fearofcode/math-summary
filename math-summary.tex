@@ -395,7 +395,7 @@ It can be shown that $\inf S = - \sup -S$, so $\inf S$ exists.
 
 
 \begin{example} \label{supexample}
-Let $a \in \mathbb{R}$. Let $S = \{r \in \mathbb{R} : 0 \leq r < a\}$. Then we claim the obvious fact that $\sup S = a$, which we will now try to prove somewhat carefully in a pattern reminiscent of other proofs of other facts that are not as entirely obvious. First, observe that $S$ is not empty\footnote{while this is obvious, it's an important step to go through in order to be able to apply the least upper bound property} as, e.g., $a - 1 \in S$. We also have to establish that $S$ is bounded above. Well, $a$ is an upper bound, as if $r \in S$ then $r < a$ by construction. So by the least upper bound property, $\sup S$ exists. Let $r = \sup S$. We are claiming that $r = a$. We prove this by contradiction. To do this, suppose $r \neq a$. Then either $r < a$ or $r > a$. For the first case, suppose $r < a$. Then we can find an element $s$ between $r$ and $a$ ($r < s < a$) in order to reach a contradiction. Let $s = r + (a - r)/2$ (the midpoint between $r$ and $a$). Then $0 \leq s < a$, so $s \in S$. But also $s > r$ (as $a - r > 0$ so $s = r + (a - r)/2 > r$), so $r$ would not actually be an upper bound (since it is not greater than or equal to $s$), a contradiction. Now suppose $r > a$. But $a$ is an upper bound for $S$ (as, for all $r \in S$, $r < a$, so $a$ is an upper bound of $S$) with $a < r$, contradicting the minimality of $r$. So we must have that $r = a$.\footnote{Apologies for the verbosity, but hopefully this makes the proof easier to follow.}
+Let $a \in \mathbb{R}$, $a > 0$. Let $S = \{r \in \mathbb{R} : 0 \leq r < a\}$. Then we claim the obvious fact that $\sup S = a$, which we will now try to prove somewhat carefully in a pattern reminiscent of other proofs of other facts that are not as entirely obvious. First, observe that $S$ is not empty\footnote{while this is obvious, it's an important step to go through in order to be able to apply the least upper bound property} as, e.g., $a/2 \in S$ since $0 < a/2 < a$. We also have to establish that $S$ is bounded above. Well, $a$ is an upper bound, as if $r \in S$ then $r < a$ by construction. So by the least upper bound property, $\sup S$ exists. Let $r = \sup S$. We are claiming that $r = a$. We prove this by contradiction. To do this, suppose $r \neq a$. Then either $r < a$ or $r > a$. For the first case, suppose $r < a$. Then we can find an element $s$ between $r$ and $a$ ($r < s < a$) in order to reach a contradiction. Let $s = r + (a - r)/2$ (the midpoint between $r$ and $a$). Then $0 \leq s < a$, so $s \in S$. But also $s > r$ (as $a - r > 0$ so $s = r + (a - r)/2 > r$), so $r$ would not actually be an upper bound (since it is not greater than or equal to $s$), a contradiction. Now suppose $r > a$. But $a$ is an upper bound for $S$ (as, for all $r \in S$, $r < a$, so $a$ is an upper bound of $S$) with $a < r$, contradicting the minimality of $r$. So we must have that $r = a$.\footnote{Apologies for the verbosity, but hopefully this makes the proof easier to follow.}
 \end{example}
 
 The least upper bound property does not apply to, e.g., $\mathbb{Q}$. Any subset of $\mathbb{Q}$ whose least upper bound is irrational is an example of this, such as $\{r \in \mathbb{Q} : 0 \leq r < \sqrt{2}\}$ (since $\sqrt{2} \notin \mathbb{Q}$).
@@ -439,28 +439,28 @@ Convergent sequences compose the way you'd expect.
 \begin{proposition}
 Let $\{a_n\}$ and $\{b_n\}$ be convergent sequences such that
 
-\begin{align}
+\begin{align*}
 \lim_{n \to \infty} a_n = a, \lim_{n \to \infty} b_n = b.
-\end{align}
+\end{align*}
 
 Then
 
-\begin{align}
+\begin{align*}
 \lim_{n \to \infty} (a_n + b_n) = a + b \\
 \lim_{n \to \infty} (a_n b_n) = ab.
-\end{align}
+\end{align*}
 
 If $a \neq 0$ and $a_n \neq 0$ for all $n$,
 
-\begin{equation}
+\begin{equation*}
 \lim_{n \to \infty} \frac{1}{a_n} = \frac{1}{a}.
-\end{equation}
+\end{equation*}
 
 If $b \neq 0$ and $b_n \neq 0$ for all $n$,
 
-\begin{equation}
+\begin{equation*}
 \lim_{n \to \infty} \frac{a_n}{b_n} = \frac{a}{b}.
-\end{equation}
+\end{equation*}
 
 \end{proposition}
 
@@ -469,11 +469,11 @@ Let $\epsilon > 0$. There exists $N_1$ such that for all $n > N_1$, $|a_n - a| <
 
 Take $N = \max(N_1, N_2)$. Then for all $n > N$, by rearranging terms and using the triangle inequality,
 
-\begin{align}
+\begin{align*}
 |(a_n + b_n) - (a+b)| & =  |(a_n - a) + (b_n - b)| \\
 & \leq  |a_n - a| + |b_n - b| \\
 & <  \epsilon/2 + \epsilon/2 = \epsilon.
-\end{align}
+\end{align*}
 
 So $\lim_{n \to \infty} (a_n + b_n) = a + b$.
 
@@ -489,9 +489,9 @@ $\lim_{n \to \infty} a_n = \lim_{n \to \infty} c_n = a$.
 
 Then
 
-\begin{equation}
+\begin{equation*}
 \lim_{n \to \infty} b_n = a.
-\end{equation}
+\end{equation*}
 
 \end{theorem}
 
@@ -512,11 +512,11 @@ Every convergent sequence is bounded.
 \begin{proof}
 Let $\{a_n\}$ be a convergence sequence. Let $\epsilon > 0$. By assumption, there exists $N$ such that for all $n > N$, $|a_n - a| < \epsilon$. In particular, when $\epsilon = 1$, $|a_n - a| < 1$. For all $n > N$, 
 
-\begin{align}
+\begin{align*}
 |a_n| & = |a + (a_n - a)| \\
 & \leq |a| + |a_n - a| \\
 & < |a| + 1.
-\end{align}
+\end{align*}
 
 Let $\alpha = \max(|a_1|, |a_2|, \ldots, |a_N|, |a| + 1)$. By construction, $\alpha \geq |a_i|$ for $1 \leq i \leq N$. For $i > N$, $|a_i| < |a| + 1 \leq \alpha$. So $|a_i| \leq \alpha$ for all $i$. So by definition of boundedness, $\{a_n\}$ is bounded, so we are done.
 \end{proof}
@@ -565,9 +565,9 @@ The most common example of a sequence that converges but whose series diverges i
 \begin{theorem} \label{geometric-series}
 Let $|r| < 1$. The geometric series $s_n = 1 + r + r^2 + \ldots + r^n$ converges:
 
-\begin{equation}
+\begin{equation*}
 \sum\limits_{n=0}^\infty r^n = \frac{1}{1-r}
-\end{equation}
+\end{equation*}
 
 and $s_n = \frac{1 - r^{n+1}}{1 - r}$. If $|r| >= 1$, the series diverges.
 \end{theorem}
@@ -589,18 +589,18 @@ We can use the comparison theorem to show that $\sum\limits_{n=1}^\infty \frac{1
 \frac{1}{n^2} < \frac{1}{n(n-1)}
 \end{equation}
 
-as $n^2 > n^2 -n = n(n-1)$, so inverting it produces \ref{comparison-inequality}. Proceeding, we have
+as $n^2 > n^2 -n = n(n-1)$, so inverting it produces Eq. \ref{comparison-inequality}. Proceeding, we have
 
-\begin{equation}
+\begin{equation*}
 \frac{1}{n(n-1)} = \frac{n - (n-1)}{n(n-1)} = \frac{1}{n-1} - \frac{1}{n},
-\end{equation}
+\end{equation*}
 
 so 
 
-\begin{align}
+\begin{align*}
 \sum\limits_{n=2}^k \frac{1}{n(n-1)} & = \sum\limits_{n=2}^k \left(\frac{1}{n-1} - \frac{1}{n}\right) \\
 & = 1 - \frac{1}{k}.
-\end{align}
+\end{align*}
 
 So $\sum\limits_{n=1}^k \frac{1}{n^2} < 1 - 1/k$, and $\lim_{k \to \infty} (1 - 1/k) = 1 - 0 = 1$, so it converges. So our series is less than another sequence we know converges, so by the comparison theorem, $\sum\limits_{n=1}^k \frac{1}{n^2}$ converges.
 \end{example}
@@ -628,9 +628,9 @@ Since $n^{1/4} < n$, $1/n < 1/(n^{1/4})$. Now we know the harmonic series ($\sum
 
 But consider the alternating series variant of series \ref{divergent-series-example}:
 
-\begin{equation} \label{alternating-series-example}
+\begin{equation*} \label{alternating-series-example}
 \sum\limits_{n=1}^\infty \frac{(-1)^n}{n^{1/4}}.
-\end{equation}
+\end{equation*}
 
 The sequence $\{1/(n^{1/4}\}$ is a non-negative decreasing sequence, so by the alternating series theorem, series \ref{alternating-series-example} converges.
 \end{example}
@@ -660,9 +660,9 @@ Let $\{I_n\}$ be a sequence of closed intervals such that each element of the se
 \begin{definition}[Cauchy criterion]
 A real sequence $\{a_n\}$ is a \textbf{Cauchy sequence} if for all $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that for all $n, m > N$, 
 
-\begin{equation}
+\begin{equation*}
 |a_n - a_m| < \epsilon.
-\end{equation}
+\end{equation*}
 \end{definition}
 
 \begin{theorem}
@@ -699,9 +699,9 @@ Note that $0 < |x-a|$ means that $x \neq a$, so it cannot be neglected; the ``if
 Substituting $f(x) = 3x-1$, $a = 1$, and $L = 2$ into the definition of a limit,
 we want to show that
 
-\begin{equation}
+\begin{equation*}
 |x - 1| < \delta \implies |3x - 3| < \epsilon.
-\end{equation}
+\end{equation*}
 
 This example was clearly chosen because the algebra works out nicely. We do like this: $|3x-3| = |3(x-1)| = 3|x-1| < \epsilon \implies |x-1| <
 \epsilon/3$, so $\delta = \epsilon/3$ is a suitable choice.
@@ -718,11 +718,11 @@ Limits of functions compose the way you'd expect:
 \begin{proposition}
 Suppose $\lim_{x \to a} f(x) = L$ and $\lim_{x \to a} g(x) = M$. Then
 
-\begin{align}
+\begin{align*}
 \lim_{x \to a} f(x) + g(x) & = L + M \\
 \lim_{x \to a} f(x)g(x) & = L \cdot M \\
 \lim_{x \to a} \left(\frac{f}{g}\right)(x) & = \frac{L}{M}
-\end{align}
+\end{align*}
 
 Assuming everything above is defined.
 
@@ -733,16 +733,16 @@ If you can show that the positive ($\lim_{x \to a^{+}} f(x)$) and negative
 different, it follows that the limit does not exist.
 
 \begin{theorem}[Squeeze theorem]
-Let $f$, $g$, $h$ be functions. Let $I \subset \mathbb{R}$ be an open interval. Let $c \in \mathbb{R}$ with $c \in I$. If $f(x) \leq g(x) \leq h(x)$ for all $x \in I$, except possibly at $x = c$, and $lim_{x \to c} f(x) = lim_{x \to c} h(x) = L$, $lim_{x \to c} g(x) = L$.
+Let $f$, $g$, $h$ be functions. Let $I \subset \mathbb{R}$ be an open interval. Let $c \in \mathbb{R}$ with $c \in I$. If $f(x) \leq g(x) \leq h(x)$ for all $x \in I$, except possibly at $x = c$, and $\lim_{x \to c} f(x) = \lim_{x \to c} h(x) = L$, $\lim_{x \to c} g(x) = L$.
 \end{theorem}
 
 \begin{definition}
 
 $f$ is \textbf{continuous} at $a$ if
 
-\begin{equation}
+\begin{equation*}
 \lim_{x \to a} f(x) = f(a).
-\end{equation}
+\end{equation*}
 
 \end{definition}
 
@@ -801,9 +801,9 @@ If $f$ is a continuous function on $(a, b)$ and $f \to \infty$ at $a$ and $b$, $
 \begin{definition} 
 $f$ is \textbf{differentiable} at $a$ if
 
-\begin{equation}
+\begin{equation*}
 \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
-\end{equation}
+\end{equation*}
 
 exists.
 \end{definition}
@@ -819,9 +819,9 @@ Every differentiable function is continuous, but not every continuous function i
 
 If $f$ and $g$ are differentiable, 
 
-\begin{equation}
+\begin{equation*}
 (f \cdot g)' = f'g + g'f.
-\end{equation}
+\end{equation*}
 
 
 \end{proposition} 
@@ -834,22 +834,22 @@ differentiating each one in turn.
 
 If $f$ and $g$ are differentiable,
 
-\begin{equation}
+\begin{equation*}
 (f \circ g)'(x) = f'(g)g'(x).
-\end{equation}
+\end{equation*}
 
 
 \end{proposition}
 
 \subsubsection{Derivative formulas}
 
-\begin{equation}
+\begin{equation*}
 \left(\frac{f}{g}\right)' = \frac{f'g - g'f}{g^2}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
 (x^n)' = nx^{n-1}
-\end{equation}
+\end{equation*}
 
 \section{Books I copied this stuff from} \label{bibliography}
 
