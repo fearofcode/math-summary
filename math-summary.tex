@@ -54,6 +54,8 @@
 
 \epigraph{What we hope ever to do with ease, we must first learn to do with diligence.}{Samuel Johnson}
 
+\epigraph{I beg you, to have patience with everything unresolved in your heart and to try to love the questions themselves as if they were locked rooms or books written in a very foreign language. Don’t search for the answers, which could not be given to you now, because you would not be able to live them. And the point is to live everything. Live the questions now. Perhaps then, someday far in the future, you will gradually, without even noticing it, live your way into the answer.}{Rainer Maria Wilke}
+
 \epigraph{Get your fundamentals on lock so that you can start getting into the ill advanced shit. This is universally applicable.}{Earl Sweatshirt}
 
 \section{Disclaimer}
@@ -254,6 +256,10 @@ $\{[x] \ | \ x \in S \}$ is a partition of $S$.
 
 This probably has nothing to do with machine learning, I'm just going to write down stuff I learned/found interesting here.
 
+\begin{theorem}[Fundamental Theorem of Arithmetic]
+Every positive integer is either prime or a product of prime numbers. This prime factorization is unique up to order of factors.
+\end{theorem}
+
 \begin{definition}
 A positive integer $n$ is a \textbf{perfect square} if $n = a^2$ for some $a \in \mathbb{Z}$.
 \end{definition}
@@ -305,7 +311,7 @@ So the number of divisors can be counted as:
 (k_1 + 1) \cdots (k_m + 1).
 \end{equation*}
 
-Now $x = a^2$. So $x$'s prime factorization is just:
+Now $n = a^2$. So $x$'s prime factorization is just:
 
 \begin{equation*}
 n = \left(p_1^{k_1} p_2^{k_2} \cdots p_m^{k_m}\right)^2 = p_1^{2k_1} p_2^{2k_2} \cdots p_m^{2k_m}.
@@ -330,6 +336,27 @@ So $n$ is a perfect square.
 
 \end{proof}
 
+\subsection{Divisibility heuristics}
+
+Let $k, n \in \mathbb{N}$. Let $m \in \mathbb{N} \cup \{0\}$.
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+$k$ & $k | n$ if and only if \\
+\hline
+2 & 2 divides $n$'s last digit \\
+3 & 3 divides the sum of $n$'s digits \\
+4 & 4 divides $n$'s last two digits \\
+5 & $n \geq 5$ and $n$'s last digit is 5 or 0 \\
+6 & $2|n$ and $3|n$ \\
+9 & 9 divides the sum of $n$'s digits \\
+$2^m$ & $2^m$ divides $n$'s last $m$ digits \\
+\hline
+\end{tabular}
+\end{center}
+
+The sum-of-digits criteria for divisibility of 3 and 9 does not work for arbitrary powers of $3$ the way we can test for divisibility by powers of 2; if $n$'s digits sum to a multiple of 27, it is not generally the case that $27|n$; consider 883 as a (counter) example; $883/27 \notin \mathbb{Z}$.
 \section{Calculus and Analysis}
 
 The following is taken from various calculus/analysis books, including Spivak's {\it Calculus} \cite{spivak} and Ross' {\it Elementary Analysis} \cite{ross}. Examples often correspond to exercises in the texts and the order follows that of the books. Although I drew this from multiple books, the amount of overlap between them is pretty high, although clearly analysis books will focus more on theory and less on calculation than a calculus book.
