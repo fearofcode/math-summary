@@ -336,6 +336,61 @@ So $n$ is a perfect square.
 
 \end{proof}
 
+\begin{proposition}  \label{special-case}
+$2^{100} \equiv 1$ (mod 5).
+\end{proposition}
+
+\begin{proof}
+This was in a computer science book as a problem to review math relevant to computer science, so we will keep the problem posed as is.\footnote{The problem was actually originally posed as a task to find $2^{100} \bmod 5$, which turns out to be 1.} This can be easily calculated on a computer, but provides a good opportunity to practice common math problem solving techniques. Also, the solution we find also would work for much larger exponents, such as $2^{1e10} \bmod 5$ which might take some time to compute. To accomplish this, we will prove Proposition \ref{special-case} as a special case of a more general proposition:
+
+\begin{equation} \label{general-mod-equation}
+2^{4n} \equiv 1 \ (\bmod \ 5),
+\end{equation}
+
+where $n \in \mathbb{N}$. Where did we come up with this claim? We just guessed it out of the blue; it appeared in a dream one night because we're fucking math geniuses. Kidding. Actually, we stumbled upon it by chance while trying to find a pattern when computing $2^{i} \bmod 5$ for successive positive values of $i$:
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$n$ & $2^n$ & $2^n \bmod 5$ \\
+\hline
+1 & 2 & 2 \\
+2 & 4 & 4 \\
+3 & 8 & 3 \\
+4 & 16 & 1 \\
+5 & 32 & 2 \\
+6 & 64 & 4 \\
+7 & 128 & 3 \\
+8 & 256 & 1 \\
+\hline
+\end{tabular}
+\end{center}
+
+And so forth. This 2-4-3-1 pattern seems to recur. So for $2^{100}$, we have $100 = 4 \times 25$, so it would be the last element of the 25th repetition of the four-integer pattern; so we \textit{conjecture} that $2^{100} \equiv 1$ (mod 5). But just spotting a pattern and extrapolating is not sufficient. In order for this to work, we need to offer some kind of rigorous mathematical argument. 
+Eq. \ref{general-mod-equation} is an attempt to generalize our claim about the 1 digit of our 2-4-3-1 pattern, as it occurs for $k = 4, 8, 12, 4n, \dots$.
+
+So now let's prove Eq. \ref{general-mod-equation}. The first thing I thought of was proof by induction, since it's over all positive integers. So for the base case, $2^{4 \times 1} - 1 = 15 = 3 \times 5$, so $5 | 2^4 -1$, or $2^4 \equiv 1 (\bmod \ 5)$.
+
+So now assume $2^{4n} \equiv 1 (\bmod \ 5)$ for $n > 1$. We want to show $2^{4(n+1)} \equiv 1 (\bmod \ 5)$. By assumption, $2 | 2^{4n}-1$. So $2^{4n}-1 = 5k$ for some $k \in \mathbb{Z}$, i.e. $2^{4n} = 5k + 1$.
+
+So now we have
+
+\begin{align*}
+2^{4(n+1)} - 1 & = 2^{4n+4} - 1 \\
+& = 16 \times 2^{4n} - 1 \\
+& = 16 \times (5k+1) - 1 \\
+& = 80k + 16 -1 \\
+& = 80k + 15 \\
+& = 5(16k + 3) \\
+\end{align*}
+
+So $5 | 2^{4n+4} - 1$, so we have completed the inductive proof. So Eq. \ref{general-mod-equation} holds. Taking $n = 25$ as a special case, we have
+
+\begin{equation*}
+2^{100} \equiv 1 \ (\bmod \ 5).
+\end{equation*}
+\end{proof}
+
 \subsection{Divisibility heuristics}
 
 Let $k, n \in \mathbb{N}$. Let $m \in \mathbb{N} \cup \{0\}$.
