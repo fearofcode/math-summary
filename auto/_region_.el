@@ -1,0 +1,43 @@
+(TeX-add-style-hook
+ "_region_"
+ (lambda ()
+   (TeX-run-style-hooks
+    "latex2e"
+    "article"
+    "art10"
+    "epigraph"
+    "amsthm"
+    "amsmath"
+    "amssymb"
+    "hyperref")
+   (LaTeX-add-labels
+    "triangle-inequality"
+    "distributive-law-2"
+    "exponent-count"
+    "special-case"
+    "general-mod-equation"
+    "supexample"
+    "bound-comparison"
+    "convergent-bounded"
+    "convergent-series-sequence"
+    "harmonic-series-divergence"
+    "geometric-series"
+    "comparison-inequality"
+    "absolute-convergence-theorem"
+    "divergent-series-example"
+    "alternating-series-example"
+    "bibliography")
+   (LaTeX-add-bibitems
+    "ross"
+    "smith"
+    "spivak"
+    "strichartz"
+    "weiss")
+   (LaTeX-add-environments
+    "definition"
+    "example"
+    "proposition"
+    "theorem"
+    "axiom"
+    "corollary")))
+
